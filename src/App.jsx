@@ -131,6 +131,25 @@ export default function App() {
               method="POST"
               className="space-y-4"
             >
+              {/* Campos ocultos */}
+              <input type="hidden" name="_captcha" value="false" />
+              <input
+                type="hidden"
+                name="_next"
+                value="https://jbrepair.info/#contacto-gracias"
+              />
+              <input
+                type="hidden"
+                name="_subject"
+                value="Nuevo mensaje desde jbrepair.info"
+              />
+              <input
+                type="hidden"
+                name="_email"
+                value="contacto@jbrepair.info"
+              />{" "}
+              {/* ⬅️ Este es el nuevo input */}
+              {/* Campos visibles */}
               <input
                 type="text"
                 name="name"
