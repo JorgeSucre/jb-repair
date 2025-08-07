@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Favicons y manifest -->
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -46,11 +47,39 @@
       content="Diagnóstico gratis, soporte confiable, atención personalizada. Agenda tu consulta sin cita previa."
     />
     <meta name="twitter:image" content="/assets/logo.svg" />
-    <!-- Mejora tiempos de conexión a redes sociales -->
+
+    <!-- Preconnect optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://wa.me" />
     <link rel="preconnect" href="https://tiktok.com" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "jb.repair",
+        "image": "https://jbrepair.info/assets/logo.svg",
+        "url": "https://jbrepair.info",
+        "telephone": "+52-311-175-1369",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Flores Magón 12C",
+          "addressLocality": "Ajijic",
+          "addressRegion": "Jalisco",
+          "addressCountry": "MX"
+        },
+        "sameAs": [
+          "https://wa.me/5213111751369",
+          "https://instagram.com/jb.repair",
+          "https://facebook.com/jb.repair16",
+          "https://tiktok.com/@jb.repair"
+        ],
+        "openingHours": "Mo-Sa 09:00-18:00",
+        "description": "Soporte técnico, reparación y mantenimiento de computadoras, laptops y celulares. Servicio rápido, confiable y con estilo en Ajijic, Jalisco."
+      }
+    </script>
   </head>
   <body class="transition-colors duration-500">
     <div id="root"></div>
