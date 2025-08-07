@@ -12,25 +12,55 @@ export default function App() {
   const [theme, setTheme] = useState(() =>
     window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
   );
+  const [statusMessage, setStatusMessage] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     document.documentElement.className = theme;
     document.documentElement.lang = lang;
   }, [theme, lang]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setStatusMessage(null);
+
+    const formData = new FormData(e.target);
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/contacto@jbrepair.info",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        setStatusMessage(
+          lang === "es"
+            ? "Mensaje enviado correctamente."
+            : "Message sent successfully."
+        );
+        e.target.reset();
+      } else {
+        throw new Error("Error en el envío");
+      }
+    } catch (error) {
+      setStatusMessage(
+        lang === "es"
+          ? "Error al enviar. Intenta de nuevo."
+          : "Failed to send. Try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   const t = {
     es: {
       slogan: "Soluciones técnicas rápidas, confiables y con estilo.",
       contact: "Contáctanos",
       services: "Servicios que ofrecemos",
-      serviceList: [
-        "Reparación de computadoras y laptops",
-        "Mantenimiento preventivo y correctivo",
-        "Diagnóstico gratuito",
-        "Instalación de software",
-        "Respaldo y recuperación de datos",
-        "Soporte técnico a domicilio",
-      ],
       schedule: "Horario: Lunes a Sábado, 9:00 a.m. - 6:00 p.m.",
       location: "Ubicación: Flores Magón 12C · Servicio a domicilio disponible",
       form: {
@@ -44,14 +74,6 @@ export default function App() {
       slogan: "Fast, reliable, and stylish tech solutions.",
       contact: "Contact Us",
       services: "Services We Offer",
-      serviceList: [
-        "Computer and laptop repair",
-        "Preventive and corrective maintenance",
-        "Free diagnostics",
-        "Software installation",
-        "Data backup and recovery",
-        "Home technical support",
-      ],
       schedule: "Schedule: Monday to Saturday, 9:00 a.m. - 6:00 p.m.",
       location: "Location: Flores Magón 12C · Home service available",
       form: {
@@ -69,7 +91,7 @@ export default function App() {
         <div className="flex items-center gap-4">
           <img
             src="/assets/logo.svg"
-            alt="jb.repair logo - servicio técnico en Ajijic"
+            alt="jb.repair logo"
             className="w-10 h-10"
           />
           <h1 className="text-2xl font-bold text-primary">jb.repair</h1>
@@ -126,18 +148,8 @@ export default function App() {
 
           <section>
             <h3 className="text-2xl font-semibold mb-4">{t.contact}</h3>
-            <form
-              action="https://formsubmit.co/contacto@jbrepair.info"
-              method="POST"
-              className="space-y-4"
-            >
-              {/* Campos ocultos */}
+            <form onSubmit={handleSubmit} className="space-y-4">
               <input type="hidden" name="_captcha" value="false" />
-              <input
-                type="hidden"
-                name="_next"
-                value="https://jbrepair.info/#contacto-gracias"
-              />
               <input
                 type="hidden"
                 name="_subject"
@@ -147,9 +159,8 @@ export default function App() {
                 type="hidden"
                 name="_email"
                 value="contacto@jbrepair.info"
-              />{" "}
-              {/* ⬅️ Este es el nuevo input */}
-              {/* Campos visibles */}
+              />
+
               <input
                 type="text"
                 name="name"
@@ -172,11 +183,21 @@ export default function App() {
               ></textarea>
               <button
                 type="submit"
-                className="bg-primary text-black px-4 py-2 rounded hover:opacity-90 transition"
+                disabled={submitting}
+                className="bg-primary text-black px-4 py-2 rounded hover:opacity-90 transition disabled:opacity-50"
               >
-                {t.form.send}
+                {submitting
+                  ? lang === "es"
+                    ? "Enviando..."
+                    : "Sending..."
+                  : t.form.send}
               </button>
             </form>
+            {statusMessage && (
+              <p className="mt-4 text-center text-sm text-green-500 dark:text-green-400">
+                {statusMessage}
+              </p>
+            )}
           </section>
 
           <section className="space-y-2 text-center text-sm text-gray-400">
@@ -222,7 +243,3 @@ export default function App() {
     </div>
   );
 }
-// This website is not affiliated with any official brands or companies.
-// All trademarks and logos are the property of their respective owners.
-// This is a personal project created for educational purposes only.
-// For any inquiries, please contact us at jorgesucre.jba@gmail.com
