@@ -56,7 +56,10 @@ export default function WhyChooseUs({ lang }) {
   }[lang];
 
   return (
-    <section className="py-20 px-4 bg-white dark:bg-gray-900 transition-colors">
+    <section
+      id="whychooseus"
+      className="py-20 px-4 bg-white dark:bg-gray-900 transition-colors"
+    >
       <h2 className="text-3xl font-bold text-center text-primary mb-12">
         {content.title}
       </h2>

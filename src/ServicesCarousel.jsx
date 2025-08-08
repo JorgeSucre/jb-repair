@@ -161,7 +161,10 @@ export default function ServicesCarousel({ lang }) {
   ]);
 
   return (
-    <section className="py-20 px-4 bg-gray-100 dark:bg-gray-800 transition-colors">
+    <section
+      id="services"
+      className="py-20 px-4 bg-gray-100 dark:bg-gray-800 transition-colors"
+    >
       <h2 className="text-3xl font-bold text-center text-primary mb-8">
         {content.title}
       </h2>

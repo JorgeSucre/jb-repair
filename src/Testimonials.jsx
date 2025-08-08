@@ -40,7 +40,10 @@ export default function Testimonials({ lang }) {
   }[lang];
 
   return (
-    <section className="py-20 px-4 bg-gray-100 dark:bg-gray-800 transition-colors">
+    <section
+      id="testimonials"
+      className="py-20 px-4 bg-gray-100 dark:bg-gray-800 transition-colors"
+    >
       <h2 className="text-3xl font-bold text-center text-primary mb-12">
         {t.title}
       </h2>

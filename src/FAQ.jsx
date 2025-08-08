@@ -86,7 +86,10 @@ export default function FAQ({ lang }) {
   };
 
   return (
-    <section className="py-16 px-4 bg-white dark:bg-gray-900 transition-colors">
+    <section
+      id="faq"
+      className="py-16 px-4 bg-white dark:bg-gray-900 transition-colors"
+    >
       <h2 className="text-3xl font-bold text-center text-primary mb-10">
         {t.title}
       </h2>
