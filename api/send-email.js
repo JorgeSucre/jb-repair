@@ -1,6 +1,6 @@
-import nodemailer from "nodemailer";
+const nodemailer = require("nodemailer");
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -12,14 +12,14 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  // Transporter de Nodemailer para Gmail con contraseña de app
+  // Configuración del transporter de Nodemailer
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true, // SSL
     auth: {
-      user: process.env.MAIL_USER, // tu correo completo
-      pass: process.env.MAIL_PASS, // contraseña de app
+      user: process.env.MAIL_USER, // correo completo
+      pass: process.env.MAIL_PASS, // contraseña de app de Gmail
     },
   });
 
@@ -37,4 +37,4 @@ export default async function handler(req, res) {
     console.error("Error sending mail:", error);
     return res.status(500).json({ error: "Failed to send email" });
   }
-}
+};
