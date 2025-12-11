@@ -133,7 +133,53 @@ export default function App() {
                 }
               }}
               className="space-y-4"
-            ></form>
+            >
+              <div>
+                <label className="block mb-1" htmlFor="name">
+                  {t.form.name}
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  className="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:ring-primary"
+                />
+              </div>
+
+              <div>
+                <label className="block mb-1" htmlFor="email">
+                  {t.form.email}
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  className="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:ring-primary"
+                />
+              </div>
+
+              <div>
+                <label className="block mb-1" htmlFor="message">
+                  {t.form.message}
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  className="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:ring-primary"
+                  rows={4}
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:opacity-90 transition"
+              >
+                {t.form.send}
+              </button>
+            </form>
           </section>
 
           {/* Footer info */}
