@@ -148,17 +148,27 @@ export default function App() {
 
           <section>
             <h3 className="text-2xl font-semibold mb-4">{t.contact}</h3>
-            <form onSubmit={handleSubmit} className="space-y-4">
+
+            <form
+              action="https://formsubmit.co/contacto@jbrepair.info"
+              method="POST"
+              className="space-y-4"
+              onSubmit={() => setSubmitting(true)}
+            >
+              {/* Opciones de FormSubmit */}
               <input type="hidden" name="_captcha" value="false" />
               <input
                 type="hidden"
                 name="_subject"
                 value="Nuevo mensaje desde jbrepair.info"
               />
+              <input type="hidden" name="_template" value="table" />
+
+              {/* Página de agradecimiento (opcional) */}
               <input
                 type="hidden"
-                name="_email"
-                value="contacto@jbrepair.info"
+                name="_next"
+                value="https://jbrepair.info/gracias"
               />
 
               <input
@@ -168,6 +178,7 @@ export default function App() {
                 required
                 className="w-full p-3 rounded bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-400 dark:border-gray-600"
               />
+
               <input
                 type="email"
                 name="email"
@@ -175,12 +186,14 @@ export default function App() {
                 required
                 className="w-full p-3 rounded bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-400 dark:border-gray-600"
               />
+
               <textarea
                 name="message"
                 placeholder={t.form.message}
                 required
                 className="w-full p-3 rounded bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-400 dark:border-gray-600 h-32"
               ></textarea>
+
               <button
                 type="submit"
                 disabled={submitting}
@@ -193,6 +206,7 @@ export default function App() {
                   : t.form.send}
               </button>
             </form>
+
             {statusMessage && (
               <p className="mt-4 text-center text-sm text-green-500 dark:text-green-400">
                 {statusMessage}
