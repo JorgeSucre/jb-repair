@@ -113,44 +113,29 @@ export default function App() {
           <section id="contact">
             <h3 className="text-2xl font-semibold mb-4">{t.contact}</h3>
 
-            <form
-              action="https://webhook.site/83bc0eac-5ada-48b0-bf6d-4b360101146c"
-              method="POST"
-              className="space-y-4"
-            >
-              <input type="text" name="_honeypot" style="display:none" />
-              <input type="hidden" name="redirect" value="false" />
+<form
+  onSubmit={async (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const data = Object.fromEntries(form.entries());
 
-              <input
-                type="text"
-                name="name"
-                placeholder={t.form.name}
-                required
-                className="w-full p-3 rounded bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-400 dark:border-gray-600"
-              />
+    const res = await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
-              <input
-                type="email"
-                name="email"
-                placeholder={t.form.email}
-                required
-                className="w-full p-3 rounded bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-400 dark:border-gray-600"
-              />
+    if (res.ok) {
+      alert("Mensaje enviado con éxito!");
+      e.target.reset();
+    } else {
+      alert("Error al enviar el mensaje. Inténtalo más tarde.");
+    }
+  }}
+  className="space-y-4"
+>
 
-              <textarea
-                name="message"
-                placeholder={t.form.message}
-                required
-                className="w-full p-3 rounded bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-400 dark:border-gray-600 h-32"
-              />
 
-              <button
-                type="submit"
-                className="bg-primary text-black px-4 py-2 rounded hover:opacity-90 transition"
-              >
-                {t.form.send}
-              </button>
-            </form>
           </section>
 
           {/* Footer info */}
