@@ -109,7 +109,7 @@ export default function App() {
             </a>
           </section>
 
-          {/* FORMULARIO CORREGIDO */}
+          {/* FORMULARIO CORREGIDO Y ADAPTADO A DARK MODE */}
           <section id="contact">
             <h3 className="text-2xl font-semibold mb-4">{t.contact}</h3>
 
@@ -135,7 +135,10 @@ export default function App() {
               className="space-y-4"
             >
               <div>
-                <label className="block mb-1" htmlFor="name">
+                <label
+                  className="block mb-1 text-gray-700 dark:text-gray-200"
+                  htmlFor="name"
+                >
                   {t.form.name}
                 </label>
                 <input
@@ -143,12 +146,15 @@ export default function App() {
                   id="name"
                   name="name"
                   required
-                  className="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:ring-primary"
+                  className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-primary"
                 />
               </div>
 
               <div>
-                <label className="block mb-1" htmlFor="email">
+                <label
+                  className="block mb-1 text-gray-700 dark:text-gray-200"
+                  htmlFor="email"
+                >
                   {t.form.email}
                 </label>
                 <input
@@ -156,20 +162,23 @@ export default function App() {
                   id="email"
                   name="email"
                   required
-                  className="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:ring-primary"
+                  className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-primary"
                 />
               </div>
 
               <div>
-                <label className="block mb-1" htmlFor="message">
+                <label
+                  className="block mb-1 text-gray-700 dark:text-gray-200"
+                  htmlFor="message"
+                >
                   {t.form.message}
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
-                  className="w-full border px-3 py-2 rounded focus:outline-none focus:ring focus:ring-primary"
                   rows={4}
+                  className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 rounded focus:outline-none focus:ring focus:ring-primary"
                 ></textarea>
               </div>
 

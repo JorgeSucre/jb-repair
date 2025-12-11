@@ -7,22 +7,31 @@ export default async function handler(req, res) {
 
   const { name, email, message } = req.body;
 
+  // Validación básica
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  // Transporter de Nodemailer para Gmail con contraseña de app
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // SSL
     auth: {
-      user: process.env.MAIL_USER,
-      pass: process.env.MAIL_PASS,
+      user: process.env.MAIL_USER, // tu correo completo
+      pass: process.env.MAIL_PASS, // contraseña de app
     },
   });
 
-  try {
-    await transporter.sendMail({
-      from: `"JB Repair" <${process.env.MAIL_USER}>`,
-      to: process.env.MAIL_USER,
-      subject: `Nuevo mensaje de ${name}`,
-      text: `Correo: ${email}\n\nMensaje:\n${message}`,
-    });
+  const mailOptions = {
+    from: `"JB Repair" <${process.env.MAIL_USER}>`,
+    to: process.env.MAIL_USER,
+    subject: `Nuevo mensaje de ${name}`,
+    text: `Correo: ${email}\n\nMensaje:\n${message}`,
+  };
 
+  try {
+    await transporter.sendMail(mailOptions);
     return res.status(200).json({ ok: true });
   } catch (error) {
     console.error("Error sending mail:", error);
