@@ -113,29 +113,27 @@ export default function App() {
           <section id="contact">
             <h3 className="text-2xl font-semibold mb-4">{t.contact}</h3>
 
-<form
-  onSubmit={async (e) => {
-    e.preventDefault();
-    const form = new FormData(e.target);
-    const data = Object.fromEntries(form.entries());
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = new FormData(e.target);
+                const data = Object.fromEntries(form.entries());
 
-    const res = await fetch("/api/send-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+                const res = await fetch("/api/send-email", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(data),
+                });
 
-    if (res.ok) {
-      alert("Mensaje enviado con éxito!");
-      e.target.reset();
-    } else {
-      alert("Error al enviar el mensaje. Inténtalo más tarde.");
-    }
-  }}
-  className="space-y-4"
->
-
-
+                if (res.ok) {
+                  alert("Mensaje enviado con éxito!");
+                  e.target.reset();
+                } else {
+                  alert("Error al enviar el mensaje. Inténtalo más tarde.");
+                }
+              }}
+              className="space-y-4"
+            ></form>
           </section>
 
           {/* Footer info */}
