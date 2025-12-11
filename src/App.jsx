@@ -12,49 +12,11 @@ export default function App() {
   const [theme, setTheme] = useState(() =>
     window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
   );
-  const [statusMessage, setStatusMessage] = useState(null);
-  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     document.documentElement.className = theme;
     document.documentElement.lang = lang;
   }, [theme, lang]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitting(true);
-    setStatusMessage(null);
-
-    const formData = new FormData(e.target);
-    try {
-      const response = await fetch(
-        "https://formsubmit.co/ajax/contacto@jbrepair.info",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      if (response.ok) {
-        setStatusMessage(
-          lang === "es"
-            ? "Mensaje enviado correctamente."
-            : "Message sent successfully."
-        );
-        e.target.reset();
-      } else {
-        throw new Error("Error en el envío");
-      }
-    } catch (error) {
-      setStatusMessage(
-        lang === "es"
-          ? "Error al enviar. Intenta de nuevo."
-          : "Failed to send. Try again."
-      );
-    } finally {
-      setSubmitting(false);
-    }
-  };
 
   const t = {
     es: {
@@ -153,9 +115,7 @@ export default function App() {
               action="https://formsubmit.co/contacto@jbrepair.info"
               method="POST"
               className="space-y-4"
-              onSubmit={() => setSubmitting(true)}
             >
-              {/* Opciones de FormSubmit */}
               <input type="hidden" name="_captcha" value="false" />
               <input
                 type="hidden"
@@ -163,8 +123,6 @@ export default function App() {
                 value="Nuevo mensaje desde jbrepair.info"
               />
               <input type="hidden" name="_template" value="table" />
-
-              {/* Página de agradecimiento (opcional) */}
               <input
                 type="hidden"
                 name="_next"
@@ -192,26 +150,15 @@ export default function App() {
                 placeholder={t.form.message}
                 required
                 className="w-full p-3 rounded bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-400 dark:border-gray-600 h-32"
-              ></textarea>
+              />
 
               <button
                 type="submit"
-                disabled={submitting}
-                className="bg-primary text-black px-4 py-2 rounded hover:opacity-90 transition disabled:opacity-50"
+                className="bg-primary text-black px-4 py-2 rounded hover:opacity-90 transition"
               >
-                {submitting
-                  ? lang === "es"
-                    ? "Enviando..."
-                    : "Sending..."
-                  : t.form.send}
+                {t.form.send}
               </button>
             </form>
-
-            {statusMessage && (
-              <p className="mt-4 text-center text-sm text-green-500 dark:text-green-400">
-                {statusMessage}
-              </p>
-            )}
           </section>
 
           <section className="space-y-2 text-center text-sm text-gray-400">
