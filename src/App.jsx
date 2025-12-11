@@ -114,22 +114,12 @@ export default function App() {
             <h3 className="text-2xl font-semibold mb-4">{t.contact}</h3>
 
             <form
-              action="https://formsubmit.co/contacto@jbrepair.info"
+              action="https://webhook.site/83bc0eac-5ada-48b0-bf6d-4b360101146c"
               method="POST"
               className="space-y-4"
             >
-              <input type="hidden" name="_captcha" value="false" />
-              <input
-                type="hidden"
-                name="_subject"
-                value="Nuevo mensaje desde jbrepair.info"
-              />
-              <input type="hidden" name="_template" value="table" />
-              <input
-                type="hidden"
-                name="_next"
-                value="https://jbrepair.info/gracias"
-              />
+              <input type="text" name="_honeypot" style="display:none" />
+              <input type="hidden" name="redirect" value="false" />
 
               <input
                 type="text"
