@@ -14,7 +14,7 @@ export default function App() {
   );
 
   useEffect(() => {
-    document.documentElement.className = theme;
+    document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.lang = lang;
   }, [theme, lang]);
 
@@ -88,7 +88,8 @@ export default function App() {
         <FAQ lang={lang} />
         <Testimonials lang={lang} />
 
-        <div className="p-6 space-y-16 max-w-3xl mx-auto" id="contact">
+        <div className="p-6 space-y-16 max-w-3xl mx-auto">
+          {/* CTA principal */}
           <section className="text-center mt-20">
             <h3 className="text-2xl font-bold mb-4 text-primary">
               {lang === "es"
@@ -108,7 +109,8 @@ export default function App() {
             </a>
           </section>
 
-          <section>
+          {/* FORMULARIO CORREGIDO */}
+          <section id="contact">
             <h3 className="text-2xl font-semibold mb-4">{t.contact}</h3>
 
             <form
@@ -161,6 +163,7 @@ export default function App() {
             </form>
           </section>
 
+          {/* Footer info */}
           <section className="space-y-2 text-center text-sm text-gray-400">
             <p>{t.schedule}</p>
             <p>{t.location}</p>
