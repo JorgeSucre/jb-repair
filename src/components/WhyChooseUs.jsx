@@ -10,67 +10,67 @@ export default function WhyChooseUs({ lang }) {
         {
           icon: "⚡",
           title: "Servicio el mismo día",
-          desc: "La mayoría de los problemas se diagnostican y solucionan el mismo día en tu hogar.",
+          desc: "Se resuelve en una sola visita.",
         },
         {
           icon: "🏠",
           title: "Vamos a tu casa",
-          desc: "No necesitas salir. Solucionamos tus problemas directamente en tu domicilio.",
+          desc: "Vamos a tu casa. Sin traslados.",
         },
         {
           icon: "🌎",
           title: "Atención para extranjeros",
-          desc: "Comunicación clara en inglés y español. Sin complicaciones.",
+          desc: "Atención en inglés y español.",
         },
         {
           icon: "🛠️",
           title: "Soluciones reales",
-          desc: "Diagnóstico correcto y soluciones definitivas, no parches temporales.",
+          desc: "Diagnóstico correcto. Solución definitiva.",
         },
         {
           icon: "🛡️",
           title: "Garantía incluida",
-          desc: "Todas las reparaciones incluyen garantía de 30 días.",
+          desc: "Incluye garantía de 30 días.",
         },
         {
           icon: "💬",
           title: "Respuesta rápida",
-          desc: "Respondemos en minutos y mantenemos comunicación clara.",
+          desc: "Respondemos en minutos.",
         },
       ],
     },
     en: {
-      title: "Why people in Ajijic choose us",
+      title: "Why choose us in Ajijic",
       list: [
         {
           icon: "⚡",
           title: "Same-day service",
-          desc: "Most problems are diagnosed and fixed the same day, right at your home.",
+          desc: "Fixed in one visit.",
         },
         {
           icon: "🏠",
           title: "We come to you",
-          desc: "No need to travel. We fix your tech issues directly at your home in Ajijic.",
+          desc: "We come to you. No travel.",
         },
         {
           icon: "🌎",
           title: "Expat-friendly service",
-          desc: "Clear communication in English and Spanish. No confusion, no stress.",
+          desc: "English & Spanish support.",
         },
         {
           icon: "🛠️",
           title: "We fix it right",
-          desc: "Accurate diagnostics and real solutions — not temporary fixes.",
+          desc: "Accurate fix. No temporary patches.",
         },
         {
           icon: "🛡️",
           title: "Warranty included",
-          desc: "All repairs include a 30-day warranty for your peace of mind.",
+          desc: "30-day warranty included.",
         },
         {
           icon: "💬",
           title: "Fast response",
-          desc: "We usually reply within minutes and keep communication simple.",
+          desc: "We reply in minutes.",
         },
       ],
     },
@@ -105,7 +105,7 @@ export default function WhyChooseUs({ lang }) {
                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
                   {item.title}
                 </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400 leading-snug">
+                <p className="text-xs text-gray-600 dark:text-gray-400 leading-snug max-w-[160px] md:max-w-none">
                   {item.desc}
                 </p>
               </div>
@@ -115,8 +115,8 @@ export default function WhyChooseUs({ lang }) {
         <div className="mt-6 text-center">
           <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 mb-3">
             {lang === "en"
-              ? "Need help with your computer or WiFi? We can fix it fast — at your home."
-              : "¿Problemas con tu computadora o WiFi? Podemos solucionarlo rápido en tu hogar."}
+              ? "Need help with your computer or WiFi? We fix it fast."
+              : "¿Problemas con tu computadora o WiFi? Lo resolvemos rápido."}
           </p>
 
           <a

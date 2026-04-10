@@ -78,15 +78,15 @@ export default function Form({ lang, t }) {
       : "Hola, te contacto desde tu sitio web. Necesito ayuda con un problema técnico en Ajijic";
 
   return (
-    <section id="contact" className="mt-2 md:mt-4">
+    <section id="contact" className="mt-2 md:mt-4 scroll-mt-24">
       <h2 className="text-2xl font-semibold mb-1">
-        {lang === "en" ? "Describe your issue" : "Describe tu problema"}
+        {lang === "en" ? "What’s going on?" : "¿Qué está pasando?"}
       </h2>
 
       <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
         {lang === "en"
-          ? "The more details you share, the faster we can help you."
-          : "Mientras más detalles compartas, más rápido podemos ayudarte."}
+          ? "More details = faster help."
+          : "Más detalles = ayuda más rápida."}
       </p>
 
       <div className="bg-white/70 dark:bg-gray-900/70 backdrop-blur border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-4 md:p-5 shadow-sm">
@@ -133,7 +133,7 @@ export default function Form({ lang, t }) {
               setLoading(false);
             }
           }}
-          className="space-y-3"
+          className="space-y-2.5"
         >
           {/* Name */}
           <div>
@@ -142,7 +142,7 @@ export default function Form({ lang, t }) {
             </label>
             <input
               name="name"
-              placeholder={lang === "en" ? "Your name" : "Tu nombre"}
+              placeholder={lang === "en" ? "Name" : "Nombre"}
               required
               minLength={3}
               onChange={(e) => {
@@ -164,7 +164,7 @@ export default function Form({ lang, t }) {
                 });
               }}
               onBlur={() => setTouched((p) => ({ ...p, name: true }))}
-              className={`w-full border bg-white/80 dark:bg-gray-900/80 shadow-sm focus:shadow-md ${
+              className={`w-full border bg-white/80 dark:bg-gray-900/80 shadow-sm focus:shadow-md transition-all duration-150 ${
                 touched.name
                   ? errors.name
                     ? "border-red-500"
@@ -187,7 +187,7 @@ export default function Form({ lang, t }) {
             <input
               name="email"
               type="email"
-              placeholder={lang === "en" ? "Your email" : "Tu correo"}
+              placeholder={lang === "en" ? "Email" : "Correo"}
               required
               onChange={(e) => {
                 const value = e.target.value;
@@ -208,7 +208,7 @@ export default function Form({ lang, t }) {
                 });
               }}
               onBlur={() => setTouched((p) => ({ ...p, email: true }))}
-              className={`w-full border bg-white/80 dark:bg-gray-900/80 shadow-sm focus:shadow-md ${
+              className={`w-full border bg-white/80 dark:bg-gray-900/80 shadow-sm focus:shadow-md transition-all duration-150 ${
                 touched.email
                   ? errors.email
                     ? "border-red-500"
@@ -232,8 +232,8 @@ export default function Form({ lang, t }) {
               name="message"
               placeholder={
                 lang === "en"
-                  ? "Describe your issue (e.g. slow laptop, WiFi not working, etc.)"
-                  : "Describe tu problema (ej. laptop lenta, WiFi no funciona, etc.)"
+                  ? "e.g. slow laptop, WiFi not working"
+                  : "ej. laptop lenta, WiFi no funciona"
               }
               required
               rows={4}
@@ -259,7 +259,7 @@ export default function Form({ lang, t }) {
                 setHint(detectIntent(value));
               }}
               onBlur={() => setTouched((p) => ({ ...p, message: true }))}
-              className={`w-full border bg-white/80 dark:bg-gray-900/80 shadow-sm focus:shadow-md ${
+              className={`w-full border bg-white/80 dark:bg-gray-900/80 shadow-sm focus:shadow-md transition-all duration-150 ${
                 touched.message
                   ? errors.message
                     ? "border-red-500"
@@ -280,29 +280,31 @@ export default function Form({ lang, t }) {
           {/* Submit */}
           <button
             disabled={loading || errors.name || errors.email || errors.message}
-            className="w-full bg-primary text-white px-6 py-3 rounded-lg text-base font-semibold shadow-lg hover:shadow-xl transition disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-95"
+            className="w-full bg-primary text-white px-6 py-3 rounded-lg text-base font-semibold shadow-lg hover:shadow-xl transition disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-95 hover:brightness-110"
           >
             {loading
               ? lang === "en"
                 ? "Sending..."
                 : "Enviando..."
-              : t.form.send}
+              : lang === "en"
+                ? "Get help now"
+                : "Recibir ayuda ahora"}
           </button>
 
           {/* Status */}
           {status === "success" && (
             <p className="text-sm text-green-600 mt-1">
               {lang === "en"
-                ? "Message sent — we’ll contact you shortly"
-                : "Mensaje enviado — te contactamos pronto"}
+                ? "Message sent. We’ll contact you soon."
+                : "Mensaje enviado. Te contactamos pronto."}
             </p>
           )}
 
           {status === "error" && (
             <p className="text-sm text-red-600 mt-1">
               {lang === "en"
-                ? "Error sending message — please contact us via WhatsApp"
-                : "Error al enviar — contáctanos por WhatsApp"}
+                ? "Error sending. Try WhatsApp instead."
+                : "Error al enviar. Usa WhatsApp mejor."}
             </p>
           )}
 
@@ -311,17 +313,17 @@ export default function Form({ lang, t }) {
             href={wa(waDynamic || message)}
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-center text-primary underline text-sm mt-2"
+            className="block text-center text-primary font-medium underline text-sm mt-3"
           >
             {lang === "en"
-              ? "Or get help instantly on WhatsApp"
-              : "O recibe ayuda inmediata por WhatsApp"}
+              ? "Or message us on WhatsApp"
+              : "O escríbenos por WhatsApp"}
           </a>
 
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 text-center">
             {lang === "en"
-              ? "We usually reply within minutes"
-              : "Respondemos en minutos"}
+              ? "We reply in minutes"
+              : "Te respondemos en minutos"}
           </p>
         </form>
       </div>

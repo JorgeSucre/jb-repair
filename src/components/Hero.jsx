@@ -5,9 +5,10 @@ import { wa } from "../utils/whatsapp.js";
 export default function Hero({ lang }) {
   const t = {
     es: {
-      title: "¿Problemas con tu computadora o WiFi en Ajijic?",
-      subtitle:
-        "Reparamos computadoras lentas, problemas de WiFi y fallas en tus dispositivos — directamente en tu hogar. Servicio confiable en Ajijic.",
+      title1: "¿Problemas con tu computadora o WiFi",
+      title2: "en Ajijic?",
+      subtitle1: "Reparamos computadoras, WiFi y dispositivos.",
+      subtitle2: "Directamente en tu hogar.",
       primary: "Arreglar mi problema ahora",
       secondary: "Ver cómo podemos ayudarte",
       socialProof:
@@ -15,22 +16,22 @@ export default function Hero({ lang }) {
       urgency:
         "Atención el mismo día en la mayoría de casos • Respuesta rápida",
       services:
-        "Reparación de laptops • Reparación de celulares • Soporte técnico a domicilio • Mac y Windows • Redes e impresoras",
-      footer: "Respondemos en minutos • Sin compromiso • Diagnóstico honesto",
+        "Laptops • Celulares • Soporte a domicilio • Mac & Windows • Redes",
+      footer: "Respondemos en minutos • Sin compromiso",
       miniTestimonial:
         "⭐ “Me arregló la laptop en una sola visita. Súper recomendado.”",
     },
     en: {
-      title: "Computer or WiFi Problems in Ajijic? We Fix It Fast",
-      subtitle:
-        "We fix slow computers, WiFi issues, and device problems fast — right at your home. Reliable service for expats and locals in Ajijic.",
+      title1: "Computer or WiFi problems",
+      title2: "in Ajijic?",
+      subtitle1: "We fix computers, WiFi issues, and devices.",
+      subtitle2: "Right at your home.",
       primary: "Fix my problem now",
       secondary: "See how we can help",
       socialProof: "⭐ Trusted by expats & locals • 1000+ devices repaired",
       urgency: "Same-day service in most cases • Fast response",
-      services:
-        "Laptop repair • Phone repair • On-site tech support • Mac & Windows • Networks & printers",
-      footer: "We usually reply in minutes • No obligation • Honest diagnosis",
+      services: "Laptops • Phones • On-site support • Mac & Windows • Networks",
+      footer: "We reply in minutes • No obligation",
       miniTestimonial:
         "⭐ “He fixed my laptop in one visit — highly recommended.”",
     },
@@ -42,10 +43,11 @@ export default function Hero({ lang }) {
       : "Hi, I need help with a technical issue in Ajijic";
 
   return (
-    <section className="text-center py-12 md:py-16 text-gray-900 dark:text-white transition-colors duration-300">
+    <section className="text-center py-10 md:py-16 text-gray-900 dark:text-white transition-colors duration-300">
       <div className="px-4 max-w-5xl mx-auto">
         <h1 className="text-3xl md:text-5xl font-extrabold text-primary mb-4 tracking-tight">
-          {t.title}
+          <span className="block">{t.title1}</span>
+          <span className="block">{t.title2}</span>
         </h1>
 
         <div className="flex flex-col items-center gap-2 mb-4">
@@ -57,10 +59,11 @@ export default function Hero({ lang }) {
           </p>
         </div>
 
-        <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto mb-6 md:mb-7 leading-relaxed">
-          {t.subtitle}
+        <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 max-w-md mx-auto mb-5 leading-relaxed">
+          <span className="block">{t.subtitle1}</span>
+          <span className="block">{t.subtitle2}</span>
         </p>
-        <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-5">
+        <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-md mx-auto mb-4">
           {t.services}
         </p>
 

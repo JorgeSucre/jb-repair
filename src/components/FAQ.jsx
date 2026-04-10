@@ -9,23 +9,23 @@ export default function FAQ({ lang }) {
       items: [
         {
           q: "¿Van a domicilio?",
-          a: "Sí, ofrecemos servicio a domicilio en Ajijic y zonas cercanas. Vamos a tu casa o negocio.",
+          a: "Sí, vamos a tu casa o negocio en Ajijic y alrededores.",
         },
         {
           q: "¿Qué tan rápido pueden ayudar?",
-          a: "En la mayoría de los casos el mismo día. Respondemos en minutos por WhatsApp.",
+          a: "Generalmente el mismo día. Respondemos en minutos.",
         },
         {
           q: "¿Qué tipo de problemas solucionan?",
-          a: "Computadoras lentas, fallas de WiFi, celulares, impresoras y soporte técnico general.",
+          a: "Computadoras, WiFi, celulares, impresoras y soporte general.",
         },
         {
           q: "¿Tiene garantía?",
-          a: "Sí, todas las reparaciones incluyen garantía de 30 días.",
+          a: "Sí, incluye 30 días de garantía.",
         },
         {
           q: "¿Hablan inglés?",
-          a: "Sí, atendemos en inglés y español sin problema.",
+          a: "Sí, en inglés y español.",
         },
       ],
     },
@@ -34,23 +34,23 @@ export default function FAQ({ lang }) {
       items: [
         {
           q: "Do you offer home service?",
-          a: "Yes, we provide on-site service in Ajijic and nearby areas. We come to your home or business.",
+          a: "Yes, we come to your home or business in Ajijic.",
         },
         {
           q: "How fast can you help?",
-          a: "In most cases, the same day. We usually reply within minutes on WhatsApp.",
+          a: "Usually the same day. We reply in minutes.",
         },
         {
-          q: "What kind of issues do you fix?",
-          a: "Slow computers, WiFi problems, phones, printers, and general tech support.",
+          q: "What do you fix?",
+          a: "Computers, WiFi, phones, printers, and tech support.",
         },
         {
-          q: "Do you offer warranty?",
-          a: "Yes, all repairs include a 30-day warranty.",
+          q: "Is there a warranty?",
+          a: "Yes, includes a 30-day warranty.",
         },
         {
           q: "Do you speak English?",
-          a: "Yes, we provide support in both English and Spanish.",
+          a: "Yes, in English and Spanish.",
         },
       ],
     },
@@ -93,7 +93,7 @@ export default function FAQ({ lang }) {
           {t.title}
         </h2>
 
-        <div className="max-w-3xl mx-auto space-y-3">
+        <div className="max-w-3xl mx-auto space-y-2">
           {t.items.map((item, i) => (
             <div
               key={item.q}
@@ -122,7 +122,7 @@ export default function FAQ({ lang }) {
                 }}
                 className="px-4 overflow-hidden text-gray-600 dark:text-gray-400 text-sm transition-all duration-300 ease-in-out"
               >
-                <p className="pt-1 pb-4">{item.a}</p>
+                <p className="pt-1 pb-4 max-w-md">{item.a}</p>
               </div>
             </div>
           ))}
@@ -136,8 +136,8 @@ export default function FAQ({ lang }) {
 
           <p className="text-gray-600 dark:text-gray-300 mb-4">
             {lang === "en"
-              ? "Tell us what’s happening and we’ll help you quickly."
-              : "Cuéntanos qué está pasando y te ayudamos rápido."}
+              ? "Tell us what’s happening. We’ll help fast."
+              : "Cuéntanos qué pasa. Te ayudamos rápido."}
           </p>
 
           <a
