@@ -1,9 +1,9 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import Hero from "../../components/Hero.jsx";
 import Services from "../../components/Services.jsx";
 import WhyChooseUs from "../../components/WhyChooseUs.jsx";
-import Testimonials from "../../components/Testimonials.jsx";
-import Faq from "../../components/FAQ.jsx";
+const Testimonials = lazy(() => import("../../components/Testimonials.jsx"));
+const Faq = lazy(() => import("../../components/FAQ.jsx"));
 import Form from "../../components/Form.jsx";
 
 export default function Home({ lang = "en" }) {
@@ -38,10 +38,14 @@ export default function Home({ lang = "en" }) {
       <WhyChooseUs lang={lang} />
 
       {/* Testimonials */}
-      <Testimonials lang={lang} />
+      <Suspense fallback={<div className="h-32" />}>
+        <Testimonials lang={lang} />
+      </Suspense>
 
       {/* FAQ */}
-      <Faq lang={lang} />
+      <Suspense fallback={<div className="h-32" />}>
+        <Faq lang={lang} />
+      </Suspense>
 
       {/* Contact */}
       <div
