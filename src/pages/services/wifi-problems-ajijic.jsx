@@ -6,7 +6,7 @@ export default function WifiService({ lang = "en" }) {
   const isEnglish = lang === "en";
 
   const title = isEnglish
-    ? "WiFi Installation & Repair in Ajijic | jb.repair"
+    ? "WiFi Problems in Ajijic | Repair, Installation & Troubleshooting"
     : "Instalación y reparación de WiFi en Ajijic | jb.repair";
 
   const description = isEnglish
@@ -40,16 +40,25 @@ export default function WifiService({ lang = "en" }) {
 
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-          {isEnglish
-            ? "WiFi installation & repair in Ajijic — fast & reliable"
-            : "Instalación y reparación de WiFi en Ajijic — rápida y confiable"}
+          <span className="block">
+            {isEnglish
+              ? "WiFi problems in Ajijic"
+              : "Problemas de WiFi en Ajijic"}
+          </span>
+          <span className="block">
+            {isEnglish ? "We fix them fast" : "Los solucionamos rápido"}
+          </span>
         </h1>
 
         {/* Intro */}
         <p className="text-gray-700 dark:text-gray-300 mb-6">
           {isEnglish
-            ? "We fix slow WiFi, connection drops, and coverage issues. We also install new networks and mesh systems for full-home coverage — usually the same day."
-            : "Solucionamos WiFi lento, desconexiones y problemas de cobertura. También instalamos redes nuevas y sistemas mesh para cobertura completa — generalmente el mismo día."}
+            ? "We fix slow WiFi, drops, and coverage issues."
+            : "Solucionamos WiFi lento, desconexiones y problemas de cobertura."}
+          <br />
+          {isEnglish
+            ? "We also install full-home mesh networks."
+            : "También instalamos redes mesh para cobertura completa."}
         </p>
 
         {/* Symptoms */}
@@ -60,20 +69,20 @@ export default function WifiService({ lang = "en" }) {
           <ul className="list-disc pl-6 space-y-2 text-gray-800 dark:text-gray-200">
             {(isEnglish
               ? [
-                  "WiFi is very slow",
-                  "Internet keeps disconnecting",
-                  "Weak signal in some rooms",
-                  "WiFi works near router but not far away",
-                  "Devices randomly lose connection",
-                  "Streaming or video calls keep buffering",
+                  "Slow WiFi",
+                  "Keeps disconnecting",
+                  "Weak signal",
+                  "Works near router only",
+                  "Devices lose connection",
+                  "Streaming buffers",
                 ]
               : [
-                  "El WiFi está muy lento",
-                  "El internet se desconecta constantemente",
-                  "Señal débil en algunas áreas",
-                  "El WiFi funciona cerca del router pero no lejos",
-                  "Los dispositivos pierden conexión",
-                  "Streaming o videollamadas con interrupciones",
+                  "WiFi lento",
+                  "Se desconecta",
+                  "Señal débil",
+                  "Solo funciona cerca del router",
+                  "Dispositivos pierden conexión",
+                  "Streaming se traba",
                 ]
             ).map((item) => (
               <li key={item}>{item}</li>
@@ -87,17 +96,30 @@ export default function WifiService({ lang = "en" }) {
             href={wa(message)}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:opacity-90 transition text-center"
+            className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:opacity-90 hover:scale-[1.02] active:scale-95 hover:brightness-110 transition-all duration-150 text-center"
           >
             {isEnglish ? "Fix my WiFi now" : "Arreglar mi WiFi ahora"}
           </a>
 
           <a
             href="/#contact"
-            className="bg-gray-800 dark:bg-white dark:text-black text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:opacity-90 transition text-center"
+            className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
           >
-            {isEnglish ? "Describe your issue" : "Describe tu problema"}
+            {isEnglish ? "Tell us what’s happening" : "Cuéntanos qué pasa"}
           </a>
+        </div>
+
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-3">
+            {isEnglish
+              ? "WiFi repair and installation in Ajijic"
+              : "Reparación e instalación de WiFi en Ajijic"}
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 max-w-md">
+            {isEnglish
+              ? "We diagnose and fix WiFi problems fast, improving speed and coverage in your home or business."
+              : "Diagnosticamos y solucionamos problemas de WiFi rápidamente, mejorando velocidad y cobertura en tu hogar o negocio."}
+          </p>
         </div>
 
         {/* What we do */}
@@ -110,20 +132,20 @@ export default function WifiService({ lang = "en" }) {
           <ul className="list-disc pl-6 space-y-2 text-gray-800 dark:text-gray-200">
             {(isEnglish
               ? [
-                  "WiFi installation and setup",
-                  "Mesh network installation",
-                  "Fix slow internet speeds",
-                  "Eliminate dead zones",
-                  "Fix connection drops",
-                  "Router configuration and optimization",
+                  "WiFi setup",
+                  "Mesh installation",
+                  "Speed issues",
+                  "Dead zones",
+                  "Connection drops",
+                  "Router optimization",
                 ]
               : [
-                  "Instalación y configuración de WiFi",
-                  "Instalación de redes mesh",
-                  "Solución de internet lento",
-                  "Eliminar zonas sin señal",
-                  "Solucionar desconexiones",
-                  "Configuración y optimización de routers",
+                  "Configuración WiFi",
+                  "Instalación mesh",
+                  "Internet lento",
+                  "Zonas sin señal",
+                  "Desconexiones",
+                  "Optimización de router",
                 ]
             ).map((item) => (
               <li key={item}>{item}</li>
@@ -139,16 +161,16 @@ export default function WifiService({ lang = "en" }) {
           <ul className="list-disc pl-6 space-y-2 text-gray-800 dark:text-gray-200">
             {(isEnglish
               ? [
-                  "Same-day service available",
-                  "On-site support in Ajijic",
-                  "English & Spanish support",
-                  "Reliable and honest service",
+                  "Fixed in one visit",
+                  "We come to you",
+                  "English & Spanish",
+                  "Reliable service",
                 ]
               : [
-                  "Servicio el mismo día",
-                  "Atención a domicilio en Ajijic",
-                  "Atención en inglés y español",
-                  "Servicio confiable y honesto",
+                  "Se resuelve en una visita",
+                  "Vamos a tu casa",
+                  "Inglés y español",
+                  "Servicio confiable",
                 ]
             ).map((item) => (
               <li key={item}>{item}</li>

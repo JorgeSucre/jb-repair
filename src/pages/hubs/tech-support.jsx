@@ -24,7 +24,7 @@ export default function TechSupport({ lang }) {
       />
 
       {/* ================= MAIN ================= */}
-      <section className="py-12 md:py-16 px-4 max-w-4xl mx-auto space-y-6">
+      <section className="py-10 md:py-16 px-4 max-w-4xl mx-auto space-y-5">
         {/* Back button */}
         <button
           onClick={() => window.history.back()}
@@ -36,19 +36,26 @@ export default function TechSupport({ lang }) {
 
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-          {isEnglish
-            ? "Tech Support in Ajijic — On-Site Help You Can Trust"
-            : "Soporte técnico en Ajijic a domicilio"}
+          <span className="block">
+            {isEnglish ? "Tech support in Ajijic" : "Soporte técnico en Ajijic"}
+          </span>
+          <span className="block">
+            {isEnglish ? "We fix it fast" : "Lo solucionamos rápido"}
+          </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-lg text-gray-900 dark:text-gray-100 mb-4">
+        <p className="text-lg text-gray-900 dark:text-gray-100 mb-4 max-w-md">
           {isEnglish
-            ? "We help with computers, accounts, WiFi, and everyday tech problems — directly at your home in Ajijic."
-            : "Te ayudamos con computadoras, cuentas, WiFi y problemas tecnológicos — directamente en tu hogar en Ajijic."}
+            ? "We help with computers, accounts, and tech issues."
+            : "Te ayudamos con computadoras, cuentas y tecnología."}
+          <br />
+          {isEnglish
+            ? "On-site service in Ajijic."
+            : "Servicio a domicilio en Ajijic."}
         </p>
 
-        <p className="text-gray-700 dark:text-gray-300 mb-4">
+        <p className="text-gray-700 dark:text-gray-300 mb-4 max-w-md">
           {isEnglish ? (
             <>
               If your issue is related to internet or connectivity, you may need
@@ -94,8 +101,8 @@ export default function TechSupport({ lang }) {
         <p className="text-green-600 text-sm mb-6">
           ⭐{" "}
           {isEnglish
-            ? "Trusted local service • Same-day visits available"
-            : "Servicio confiable local • Atención el mismo día"}
+            ? "Local service • Same-day"
+            : "Servicio local • Mismo día"}
         </p>
 
         {/* CTA */}
@@ -108,22 +115,20 @@ export default function TechSupport({ lang }) {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto bg-primary text-white px-5 py-2.5 rounded-lg font-semibold shadow-sm hover:opacity-90 transition text-center"
+            className="w-full sm:w-auto bg-primary text-white px-5 py-2.5 rounded-lg font-semibold shadow-sm hover:opacity-90 hover:scale-[1.02] active:scale-95 hover:brightness-110 transition-all duration-150 text-center"
           >
             {isEnglish ? "Fix my issue now" : "Arreglar mi problema ahora"}
           </a>
           <a
             href="/#contact"
-            className="w-full sm:w-auto border-2 border-primary text-primary px-5 py-2.5 rounded-lg font-semibold text-center hover:bg-primary hover:text-white transition"
+            className="w-full sm:w-auto border-2 border-primary text-primary px-5 py-2.5 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
           >
-            {isEnglish ? "Contact via form" : "Contactar por formulario"}
+            {isEnglish ? "Tell us what’s happening" : "Cuéntanos qué pasa"}
           </a>
         </div>
 
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">
-          {isEnglish
-            ? "We usually reply within minutes"
-            : "Respondemos en minutos"}
+          {isEnglish ? "We reply in minutes" : "Respondemos en minutos"}
         </p>
 
         {/* Problems */}
@@ -134,23 +139,36 @@ export default function TechSupport({ lang }) {
         <ul className="list-disc pl-6 text-gray-900 dark:text-gray-100 space-y-2 mb-6">
           {(isEnglish
             ? [
-                "I can’t access my email or accounts",
-                "I forgot my passwords",
-                "My computer is acting strange",
-                "I need help setting up a new device",
-                "Things just aren’t working like they should",
+                "Can’t access accounts",
+                "Forgot passwords",
+                "Computer acting strange",
+                "Set up new device",
+                "Things not working",
               ]
             : [
-                "No puedo acceder a mis cuentas",
-                "Olvidé mis contraseñas",
-                "Mi computadora falla",
-                "Necesito configurar un equipo nuevo",
-                "Las cosas no funcionan correctamente",
+                "No acceso a cuentas",
+                "Olvidé contraseñas",
+                "Computadora falla",
+                "Configurar equipo",
+                "No funciona bien",
               ]
           ).map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
+
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold mb-3">
+            {isEnglish
+              ? "On-site tech support in Ajijic"
+              : "Soporte técnico a domicilio en Ajijic"}
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 max-w-md">
+            {isEnglish
+              ? "We diagnose and fix everyday tech issues fast, so your devices work as expected."
+              : "Diagnosticamos y solucionamos problemas tecnológicos rápidamente para que todo funcione correctamente."}
+          </p>
+        </div>
 
         {/* Services */}
         <h2 className="text-2xl font-semibold mb-3">

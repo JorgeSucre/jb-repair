@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 // Pages
 import Home from "./pages/home/Home.jsx";
@@ -7,7 +7,7 @@ import Home from "./pages/home/Home.jsx";
 // Services
 import ComputerRepair from "./pages/services/computer-repair-ajijic.jsx";
 import PhoneRepair from "./pages/services/phone-repair-ajijic.jsx";
-import WifiService from "./pages/services/wifi-troubleshoot-ajijic.jsx";
+import WifiService from "./pages/services/wifi-problems-ajijic.jsx";
 import SecurityCameras from "./pages/services/security-cameras-ajijic.jsx";
 
 // Hubs
@@ -34,6 +34,7 @@ function getInitialTheme() {
 }
 
 export default function App() {
+  const location = useLocation();
   const [lang, setLang] = useState(getInitialLang);
   const [theme, setTheme] = useState(getInitialTheme);
 
@@ -51,6 +52,10 @@ export default function App() {
       window.localStorage.setItem("theme", theme);
     }
   }, [lang, theme]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-white to-primary/5 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 text-gray-900 dark:text-white transition-colors duration-300">

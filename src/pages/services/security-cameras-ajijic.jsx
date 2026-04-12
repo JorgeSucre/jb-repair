@@ -15,7 +15,7 @@ export default function SecurityCameras({ lang }) {
       <SEO
         title={
           isEnglish
-            ? "Security Cameras & Doorbells in Ajijic | jb.repair"
+            ? "Security Cameras in Ajijic | Installation & Smart Doorbells"
             : "Cámaras de seguridad en Ajijic | jb.repair"
         }
         description={
@@ -40,23 +40,32 @@ export default function SecurityCameras({ lang }) {
 
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold text-primary">
-          {isEnglish
-            ? "Security cameras & smart doorbells in Ajijic"
-            : "Cámaras de seguridad y timbres inteligentes en Ajijic"}
+          <span className="block">
+            {isEnglish
+              ? "Security cameras in Ajijic"
+              : "Cámaras de seguridad en Ajijic"}
+          </span>
+          <span className="block">
+            {isEnglish ? "Protect your home" : "Protege tu hogar"}
+          </span>
         </h1>
 
         {/* Intro */}
         <p className="text-lg text-gray-900 dark:text-gray-100">
           {isEnglish
-            ? "We install security cameras and smart doorbells to protect your home or business — fully configured and ready to use."
-            : "Instalamos cámaras de seguridad y timbres inteligentes para proteger tu hogar o negocio — completamente configurados y listos para usar."}
+            ? "We install security cameras and smart doorbells."
+            : "Instalamos cámaras de seguridad y timbres inteligentes."}
+          <br />
+          {isEnglish
+            ? "Fully configured and ready to use."
+            : "Completamente configurados y listos para usar."}
         </p>
 
         {/* Social proof */}
         <p className="text-sm text-green-600">
           {isEnglish
-            ? "⭐ Ideal for homes, businesses and rentals"
-            : "⭐ Ideal para casas, negocios y propiedades en renta"}
+            ? "⭐ Homes, businesses & rentals"
+            : "⭐ Casas, negocios y rentas"}
         </p>
 
         {/* CTAs */}
@@ -70,25 +79,34 @@ export default function SecurityCameras({ lang }) {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:opacity-90 transition text-center"
+            className="bg-primary text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:opacity-90 hover:scale-[1.02] active:scale-95 hover:brightness-110 transition-all duration-150 text-center"
           >
-            {isEnglish
-              ? "Install security system now"
-              : "Instalar sistema de seguridad"}
+            {isEnglish ? "Install cameras now" : "Instalar cámaras ahora"}
           </a>
 
           <a
             href="/#contact"
-            className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary hover:text-white transition"
+            className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
           >
-            {isEnglish ? "Contact via form" : "Contactar por formulario"}
+            {isEnglish ? "Tell us what you need" : "Cuéntanos qué necesitas"}
           </a>
         </div>
         <p className="text-xs text-gray-500 dark:text-gray-400">
-          {isEnglish
-            ? "We usually reply within minutes"
-            : "Respondemos en minutos"}
+          {isEnglish ? "We reply in minutes" : "Respondemos en minutos"}
         </p>
+
+        <div className="mt-10 space-y-3">
+          <h2 className="text-2xl font-semibold">
+            {isEnglish
+              ? "Security camera installation in Ajijic"
+              : "Instalación de cámaras de seguridad en Ajijic"}
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 max-w-md">
+            {isEnglish
+              ? "We install and configure security systems so you can monitor your property from anywhere."
+              : "Instalamos y configuramos sistemas de seguridad para que puedas monitorear tu propiedad desde cualquier lugar."}
+          </p>
+        </div>
 
         {/* Services */}
         <div className="mt-10 space-y-4">
@@ -100,24 +118,12 @@ export default function SecurityCameras({ lang }) {
             <li>
               {isEnglish
                 ? "Indoor & outdoor cameras"
-                : "Cámaras interiores y exteriores"}
+                : "Cámaras interior y exterior"}
             </li>
-            <li>
-              {isEnglish
-                ? "Smart video doorbells"
-                : "Timbres inteligentes con video"}
-            </li>
-            <li>
-              {isEnglish
-                ? "Remote monitoring setup"
-                : "Monitoreo remoto desde tu celular"}
-            </li>
+            <li>{isEnglish ? "Smart doorbells" : "Timbres inteligentes"}</li>
+            <li>{isEnglish ? "Remote monitoring" : "Monitoreo remoto"}</li>
             <li>{isEnglish ? "DVR / NVR systems" : "Sistemas DVR / NVR"}</li>
-            <li>
-              {isEnglish
-                ? "Full property coverage"
-                : "Cobertura completa de la propiedad"}
-            </li>
+            <li>{isEnglish ? "Full coverage" : "Cobertura completa"}</li>
           </ul>
         </div>
       </section>

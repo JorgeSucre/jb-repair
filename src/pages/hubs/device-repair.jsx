@@ -27,7 +27,7 @@ export default function DeviceRepair({ lang }) {
       />
 
       {/* ================= MAIN ================= */}
-      <section className="py-12 md:py-16 px-4 max-w-5xl mx-auto space-y-6">
+      <section className="py-10 md:py-16 px-4 max-w-5xl mx-auto space-y-5">
         {/* Back */}
         <button
           onClick={() => window.history.back()}
@@ -38,9 +38,14 @@ export default function DeviceRepair({ lang }) {
 
         {/* Title */}
         <h1 className="text-3xl md:text-4xl font-bold text-primary">
-          {isEnglish
-            ? "Laptop & Phone Repair in Ajijic"
-            : "Reparación de laptops y celulares en Ajijic"}
+          <span className="block">
+            {isEnglish
+              ? "Device repair in Ajijic"
+              : "Reparación de dispositivos en Ajijic"}
+          </span>
+          <span className="block">
+            {isEnglish ? "We fix it fast" : "Lo solucionamos rápido"}
+          </span>
         </h1>
 
         {/* Social proof */}
@@ -51,10 +56,14 @@ export default function DeviceRepair({ lang }) {
         </p>
 
         {/* Intro */}
-        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl">
+        <p className="text-lg text-gray-700 dark:text-gray-300 max-w-md">
           {isEnglish
-            ? "We fix slow laptops, broken phones, and device issues fast — directly at your home in Ajijic."
-            : "Reparamos laptops lentas, celulares dañados y problemas técnicos — directamente en tu hogar en Ajijic."}
+            ? "We fix laptops, phones, and device issues."
+            : "Reparamos laptops, celulares y otros dispositivos."}
+          <br />
+          {isEnglish
+            ? "On-site service in Ajijic."
+            : "Servicio a domicilio en Ajijic."}
         </p>
 
         {/* CTA */}
@@ -67,16 +76,16 @@ export default function DeviceRepair({ lang }) {
             )}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-white px-5 py-2.5 rounded-lg font-semibold shadow-md hover:opacity-90 transition text-center"
+            className="bg-primary text-white px-5 py-2.5 rounded-lg font-semibold shadow-md hover:opacity-90 hover:scale-[1.02] active:scale-95 hover:brightness-110 transition-all duration-150 text-center"
           >
             {isEnglish ? "Fix my device now" : "Arreglar mi equipo ahora"}
           </a>
 
           <a
             href="/#contact"
-            className="border-2 border-primary text-primary px-5 py-2.5 rounded-lg font-semibold text-center hover:bg-primary hover:text-white transition"
+            className="border-2 border-primary text-primary px-5 py-2.5 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
           >
-            {isEnglish ? "Contact via form" : "Contactar por formulario"}
+            {isEnglish ? "Tell us what’s happening" : "Cuéntanos qué pasa"}
           </a>
         </div>
 
@@ -104,7 +113,7 @@ export default function DeviceRepair({ lang }) {
         {/* ================= SERVICES ================= */}
         <div className="grid md:grid-cols-2 gap-6 mt-8">
           {/* Laptops */}
-          <div className="p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-md hover:shadow-lg transition">
+          <div className="p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
             <h2 className="text-lg font-bold mb-2">
               {isEnglish
                 ? "💻 Laptop & Computer Repair"
@@ -112,13 +121,8 @@ export default function DeviceRepair({ lang }) {
             </h2>
 
             <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
-              <li>
-                •{" "}
-                {isEnglish
-                  ? "Slow or freezing computer"
-                  : "Computadora lenta o trabada"}
-              </li>
-              <li>• {isEnglish ? "SSD upgrades" : "Actualización a SSD"}</li>
+              <li>• {isEnglish ? "Slow computer" : "Computadora lenta"}</li>
+              <li>• {isEnglish ? "SSD upgrade" : "Actualización a SSD"}</li>
               <li>• {isEnglish ? "System errors" : "Errores de sistema"}</li>
             </ul>
 
@@ -131,7 +135,7 @@ export default function DeviceRepair({ lang }) {
           </div>
 
           {/* Phones */}
-          <div className="p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-md hover:shadow-lg transition">
+          <div className="p-5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
             <h2 className="text-lg font-bold mb-2">
               {isEnglish
                 ? "📱 Phone & Tablet Repair"

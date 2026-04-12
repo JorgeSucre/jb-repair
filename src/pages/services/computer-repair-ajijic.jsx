@@ -15,12 +15,12 @@ export default function computerRepair({ lang }) {
       <SEO
         title={
           isEnglish
-            ? "Laptop Repair in Ajijic | jb.repair"
+            ? "Computer Repair in Ajijic | Laptop & Mac Repair"
             : "Reparación de laptops en Ajijic | jb.repair"
         }
         description={
           isEnglish
-            ? "Fix slow laptops, system errors, and hardware issues in Ajijic. Fast, on-site service."
+            ? "Computer repair in Ajijic. Fix slow laptops, system errors, and hardware issues. Same-day service."
             : "Reparación de laptops en Ajijic. Solucionamos equipos lentos, errores y fallas con servicio a domicilio."
         }
         url={url}
@@ -38,15 +38,24 @@ export default function computerRepair({ lang }) {
         </button>
 
         <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-          {isEnglish
-            ? "Laptop repair in Ajijic – on-site service"
-            : "Reparación de laptops en Ajijic a domicilio"}
+          <span className="block">
+            {isEnglish
+              ? "Computer problems in Ajijic"
+              : "Problemas con tu computadora en Ajijic"}
+          </span>
+          <span className="block">
+            {isEnglish ? "We fix them fast" : "Los solucionamos rápido"}
+          </span>
         </h1>
 
         <p className="text-lg text-gray-900 dark:text-gray-100 mb-4">
           {isEnglish
-            ? "We fix slow, broken, or malfunctioning laptops — directly at your home in Ajijic. Fast diagnosis and reliable solutions."
-            : "Reparamos laptops lentas, dañadas o con fallas — directamente en tu hogar en Ajijic. Diagnóstico rápido y soluciones confiables."}
+            ? "We fix slow, broken, or crashing computers."
+            : "Reparamos computadoras lentas, dañadas o con fallas."}
+          <br />
+          {isEnglish
+            ? "On-site service in Ajijic."
+            : "Servicio a domicilio en Ajijic."}
         </p>
 
         <p className="text-sm text-green-600 mb-6">
@@ -75,15 +84,26 @@ export default function computerRepair({ lang }) {
             href="/#contact"
             className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary hover:text-white transition"
           >
-            {isEnglish ? "Contact via form" : "Contactar por formulario"}
+            {isEnglish ? "Tell us what’s happening" : "Cuéntanos qué pasa"}
           </a>
         </div>
 
         <p className="text-xs text-gray-500 dark:text-gray-400">
-          {isEnglish
-            ? "We usually reply within minutes"
-            : "Respondemos en minutos"}
+          {isEnglish ? "We reply in minutes" : "Respondemos en minutos"}
         </p>
+
+        <div className="mt-10 space-y-3">
+          <h2 className="text-2xl font-semibold">
+            {isEnglish
+              ? "Computer repair and laptop service in Ajijic"
+              : "Reparación de computadoras y laptops en Ajijic"}
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 max-w-md">
+            {isEnglish
+              ? "We diagnose and fix computer issues fast, improving speed, performance, and reliability."
+              : "Diagnosticamos y solucionamos problemas de computadoras rápidamente, mejorando velocidad y rendimiento."}
+          </p>
+        </div>
 
         {/* SERVICIOS */}
         <div className="mt-12 space-y-4">
@@ -94,28 +114,14 @@ export default function computerRepair({ lang }) {
           </h2>
 
           <ul className="list-disc pl-6 text-gray-900 dark:text-gray-100 space-y-2">
+            <li>{isEnglish ? "Slow computer" : "Computadora lenta"}</li>
+            <li>{isEnglish ? "Won’t turn on" : "No enciende"}</li>
+            <li>{isEnglish ? "Overheating" : "Sobrecalentamiento"}</li>
+            <li>{isEnglish ? "SSD upgrade" : "Upgrade a SSD"}</li>
             <li>
-              {isEnglish
-                ? "Slow or freezing laptop"
-                : "Laptop lenta o congelándose"}
+              {isEnglish ? "System reinstall" : "Reinstalación del sistema"}
             </li>
-            <li>
-              {isEnglish ? "Laptop not turning on" : "Equipo que no enciende"}
-            </li>
-            <li>{isEnglish ? "Overheating issues" : "Sobrecalentamiento"}</li>
-            <li>
-              {isEnglish ? "Upgrade to SSD" : "Cambio de disco duro a SSD"}
-            </li>
-            <li>
-              {isEnglish
-                ? "System reinstall without data loss"
-                : "Formateo sin pérdida de archivos"}
-            </li>
-            <li>
-              {isEnglish
-                ? "System errors (Windows / macOS)"
-                : "Errores de sistema (Windows / macOS)"}
-            </li>
+            <li>{isEnglish ? "System errors" : "Errores del sistema"}</li>
           </ul>
         </div>
       </section>
