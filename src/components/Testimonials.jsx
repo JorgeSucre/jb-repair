@@ -11,6 +11,24 @@ export default function Testimonials({ lang }) {
 
   const reviews = [
     {
+      name: "Gabriela Escatel",
+      title: isEnglish
+        ? "Great Service in Ajijic"
+        : "Excelente servicio en Ajijic",
+      text: isEnglish
+        ? "Great service in Ajijic. Affordable, adaptable to client needs, and always willing to help with anything I needed. Highly recommended."
+        : "¡Un gran servicio en Ajijic! Accesible en costo, adaptable a las necesidades del cliente y con toda la disposición de ayudarme con lo que necesitaba. ¡Lo recomiendo!",
+    },
+    {
+      name: "Lynn Scott",
+      title: isEnglish
+        ? "Reliable Ongoing Support"
+        : "Soporte confiable constante",
+      text: isEnglish
+        ? "I have worked with Jorge and his team many times and they have been great. I really appreciate all his help."
+        : "He trabajado con Jorge y su equipo muchas veces y siempre han sido excelentes. Aprecio mucho toda su ayuda.",
+    },
+    {
       name: "Laura Pratt",
       title: isEnglish
         ? "WiFi Fixed in One Visit"
@@ -77,19 +95,34 @@ export default function Testimonials({ lang }) {
 
       <div className="max-w-4xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
-          {reviews.map((review) => (
+          {reviews.map((review, index) => (
             <div
               key={review.name}
-              className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-2 md:p-3 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary dark:hover:bg-gray-800 transition-all duration-300 flex flex-col justify-between"
+              className={`bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-2 md:p-3 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary dark:hover:bg-gray-800 hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between ${
+                index === 0
+                  ? "col-span-2 md:col-span-2 p-4 md:p-5 border-primary shadow-md"
+                  : ""
+              }`}
             >
+              {index === 0 && (
+                <span className="text-[10px] uppercase tracking-wide text-primary font-semibold mb-1 inline-block">
+                  {isEnglish ? "Top review" : "Mejor reseña"}
+                </span>
+              )}
               <div className="text-yellow-400 text-sm mb-1.5">★★★★★</div>
-              <p className="text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100 mb-1">
+              <p
+                className={`text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100 mb-1 ${index === 0 ? "text-sm md:text-base" : ""}`}
+              >
                 {review.title}
               </p>
-              <p className="text-xs text-gray-600 dark:text-gray-300 mb-2 line-clamp-3">
+              <p
+                className={`text-xs text-gray-600 dark:text-gray-300 mb-2 ${index === 0 ? "text-sm md:text-base line-clamp-none" : "line-clamp-3"}`}
+              >
                 "{review.text}"
               </p>
-              <p className="text-[11px] md:text-xs font-medium text-gray-800 dark:text-gray-200">
+              <p
+                className={`text-[11px] md:text-xs font-medium text-gray-800 dark:text-gray-200 ${index === 0 ? "text-sm" : ""}`}
+              >
                 {review.name}
               </p>
             </div>
@@ -101,7 +134,7 @@ export default function Testimonials({ lang }) {
             href="https://g.page/r/CSkOaH6h6oOgEAI/review"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-white px-4 py-2 rounded-lg font-semibold shadow-md hover:shadow-lg transition"
+            className="bg-primary text-white px-4 py-2 rounded-lg font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 hover:brightness-110 transition-all duration-150"
           >
             {isEnglish ? "Write a review" : "Escribir una reseña"}
           </a>
@@ -110,7 +143,7 @@ export default function Testimonials({ lang }) {
             href="https://g.page/r/CSkOaH6h6oOgEAI"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary underline text-sm flex items-center justify-center"
+            className="text-primary underline text-sm flex items-center justify-center hover:opacity-80 transition"
           >
             {isEnglish
               ? "See all reviews on Google"
@@ -123,7 +156,7 @@ export default function Testimonials({ lang }) {
             href={wa(message)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-primary text-white px-5 py-2.5 rounded-lg font-semibold shadow-md hover:shadow-lg transition"
+            className="inline-block bg-primary text-white px-5 py-2.5 rounded-lg font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 hover:brightness-110 transition-all duration-150"
           >
             {isEnglish ? "Contact via WhatsApp" : "Contactar por WhatsApp"}
           </a>
