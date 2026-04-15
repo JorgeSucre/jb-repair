@@ -9,6 +9,7 @@ import ComputerRepair from "./pages/services/computer-repair-ajijic.jsx";
 import PhoneRepair from "./pages/services/phone-repair-ajijic.jsx";
 import WifiService from "./pages/services/wifi-problems-ajijic.jsx";
 import SecurityCameras from "./pages/services/security-cameras-ajijic.jsx";
+import ElectronicsRecycling from "./pages/services/electronics-recycling-ajijic.jsx";
 
 // Hubs
 import DeviceRepair from "./pages/hubs/device-repair.jsx";
@@ -83,6 +84,10 @@ export default function App() {
           <Route
             path="/security-cameras-ajijic"
             element={<SecurityCameras lang={lang} />}
+          />
+          <Route
+            path="/electronics-recycling-ajijic"
+            element={<ElectronicsRecycling lang={lang} />}
           />
 
           {/* Hubs */}
