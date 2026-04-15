@@ -2,7 +2,8 @@ import React from "react";
 import SEO from "../../components/SEO.jsx";
 import { wa } from "../../utils/whatsapp.js";
 
-export default function ElectronicsRecycling({ isEnglish }) {
+export default function ElectronicsRecycling({ lang }) {
+  const isEnglish = lang === "en";
   const message = isEnglish
     ? "Hi, I have some old electronics I’d like to recycle in Ajijic."
     : "Hola, tengo electrónicos que quiero reciclar en Ajijic.";
