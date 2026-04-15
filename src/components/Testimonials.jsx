@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { wa } from "../utils/whatsapp.js";
 
@@ -87,20 +87,97 @@ export default function Testimonials({ lang }) {
     },
   ];
 
+  const [startIndex, setStartIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const isPaused = useRef(false);
+  const touchStartX = useRef(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isPaused.current) return;
+
+      setVisible(false);
+      setTimeout(() => {
+        setStartIndex((prev) => (prev + 1) % reviews.length);
+        setVisible(true);
+      }, 250);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [reviews.length]);
+
+  const visibleReviews = Array.from(
+    { length: reviews.length },
+    (_, i) => reviews[(startIndex + i) % reviews.length],
+  );
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "jb.repair",
+    image: "https://jbrepair.info",
+    url: "https://jbrepair.info",
+    telephone: "+52 311 175 1369",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Ajijic",
+      addressCountry: "MX",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: reviews.length.toString(),
+    },
+    review: reviews.slice(0, 5).map((r) => ({
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: r.name,
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: "5",
+      },
+      reviewBody: r.text,
+    })),
+  };
+
   return (
     <section className="py-8 md:py-10 px-3 text-gray-900 dark:text-white transition-colors duration-300">
+      <script type="application/ld+json">
+        {JSON.stringify(structuredData)}
+      </script>
       <h2 className="text-2xl md:text-3xl font-bold text-center text-primary mb-4">
         {isEnglish ? "Google Reviews" : "Reseñas de Google"}
       </h2>
 
       <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
-          {reviews.map((review, index) => (
+        <div
+          onMouseEnter={() => (isPaused.current = true)}
+          onMouseLeave={() => (isPaused.current = false)}
+          onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
+          onTouchEnd={(e) => {
+            const delta = e.changedTouches[0].clientX - touchStartX.current;
+            if (Math.abs(delta) > 50) {
+              setVisible(false);
+              setTimeout(() => {
+                setStartIndex((prev) =>
+                  delta < 0
+                    ? (prev + 1) % reviews.length
+                    : (prev - 1 + reviews.length) % reviews.length,
+                );
+                setVisible(true);
+              }, 200);
+            }
+          }}
+          className={`grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
+        >
+          {visibleReviews.map((review, index) => (
             <div
               key={review.name}
-              className={`bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-2 md:p-3 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary dark:hover:bg-gray-800 hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between ${
+              className={`bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-2 md:p-3 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary dark:hover:bg-gray-800 hover:scale-[1.015] transition-all duration-300 flex flex-col justify-between ${
                 index === 0
-                  ? "col-span-2 md:col-span-2 p-4 md:p-5 border-primary shadow-md"
+                  ? "col-span-2 md:col-span-2 p-4 md:p-5 border-primary shadow-md bg-gradient-to-br from-primary/5 to-transparent transition-transform duration-500"
                   : ""
               }`}
             >
@@ -109,17 +186,33 @@ export default function Testimonials({ lang }) {
                   {isEnglish ? "Top review" : "Mejor reseña"}
                 </span>
               )}
-              <div className="text-yellow-400 text-sm mb-1.5">★★★★★</div>
+              <div className="flex items-center gap-2 mb-1.5">
+                <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold">
+                  {review.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")
+                    .slice(0, 2)}
+                </div>
+                <div className="text-yellow-400 text-sm animate-[pulse_2s_ease-in-out_infinite]">
+                  ★★★★★
+                </div>
+              </div>
               <p
-                className={`text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100 mb-1 ${index === 0 ? "text-sm md:text-base" : ""}`}
+                className={`text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100 mb-1 ${index === 0 ? "text-sm md:text-base font-bold" : ""}`}
               >
                 {review.title}
               </p>
               <p
                 className={`text-xs text-gray-600 dark:text-gray-300 mb-2 ${index === 0 ? "text-sm md:text-base line-clamp-none" : "line-clamp-3"}`}
               >
-                "{review.text}"
+                <span className="text-primary mr-1">“</span>
+                {review.text}
+                <span className="text-primary ml-1">”</span>
               </p>
+              {index === 0 && (
+                <div className="h-px w-full bg-primary/20 my-2" />
+              )}
               <p
                 className={`text-[11px] md:text-xs font-medium text-gray-800 dark:text-gray-200 ${index === 0 ? "text-sm" : ""}`}
               >
@@ -158,7 +251,9 @@ export default function Testimonials({ lang }) {
             rel="noopener noreferrer"
             className="inline-block bg-primary text-white px-5 py-2.5 rounded-lg font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 hover:brightness-110 transition-all duration-150"
           >
-            {isEnglish ? "Contact via WhatsApp" : "Contactar por WhatsApp"}
+            {isEnglish
+              ? "Get help now on WhatsApp"
+              : "Recibe ayuda por WhatsApp"}
           </a>
         </div>
       </div>

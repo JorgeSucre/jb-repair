@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { wa } from "../utils/whatsapp.js";
+import { Link } from "react-router-dom";
 
 export default function WhyChooseUs({ lang }) {
   const content = {
@@ -114,9 +115,30 @@ export default function WhyChooseUs({ lang }) {
         </div>
         <div className="mt-6 text-center">
           <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 mb-3">
-            {lang === "en"
-              ? "Need help with your computer or WiFi? We fix it fast."
-              : "¿Problemas con tu computadora o WiFi? Lo resolvemos rápido."}
+            {lang === "en" ? (
+              <>
+                Need help with your computer or WiFi? We fix it fast. <br />
+                ♻️ We also help reduce e-waste in Ajijic.{" "}
+                <Link
+                  to="/electronics-recycling-ajijic"
+                  className="text-primary underline"
+                >
+                  Learn more
+                </Link>
+              </>
+            ) : (
+              <>
+                ¿Problemas con tu computadora o WiFi? Lo resolvemos rápido.{" "}
+                <br />
+                ♻️ También ayudamos a reducir residuos electrónicos en Ajijic.{" "}
+                <Link
+                  to="/electronics-recycling-ajijic"
+                  className="text-primary underline"
+                >
+                  Ver más
+                </Link>
+              </>
+            )}
           </p>
 
           <a

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { wa } from "../utils/whatsapp.js";
@@ -27,6 +28,10 @@ export default function FAQ({ lang }) {
           q: "¿Hablan inglés?",
           a: "Sí, en inglés y español.",
         },
+        {
+          q: "¿Aceptan electrónicos viejos o dañados?",
+          a: "Sí, aceptamos electrónicos para reutilizar y reducir residuos. Puedes ver más aquí: ",
+        },
       ],
     },
     en: {
@@ -51,6 +56,10 @@ export default function FAQ({ lang }) {
         {
           q: "Do you speak English?",
           a: "Yes, in English and Spanish.",
+        },
+        {
+          q: "Do you accept old or broken electronics?",
+          a: "Yes, we accept electronics to refurbish and reduce e-waste. Learn more here: ",
         },
       ],
     },
@@ -122,7 +131,18 @@ export default function FAQ({ lang }) {
                 }}
                 className="px-4 overflow-hidden text-gray-600 dark:text-gray-400 text-sm transition-all duration-300 ease-in-out"
               >
-                <p className="pt-1 pb-4 max-w-md">{item.a}</p>
+                <p className="pt-1 pb-4 max-w-md">
+                  {item.a}
+                  {item.q.includes("electrónicos") ||
+                  item.q.includes("electronics") ? (
+                    <Link
+                      to="/electronics-recycling-ajijic"
+                      className="text-primary underline ml-1"
+                    >
+                      {lang === "en" ? "Learn more" : "Ver más"}
+                    </Link>
+                  ) : null}
+                </p>
               </div>
             </div>
           ))}
