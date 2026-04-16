@@ -1,11 +1,13 @@
 import SEO from "../../components/SEO.jsx";
 import { Link } from "react-router-dom";
 import { wa } from "../../utils/whatsapp.js";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { goToContact } from "../../utils/navigation.js";
 
 export default function DeviceRepair({ lang }) {
   const isEnglish = lang === "en";
   const location = useLocation();
+  const navigate = useNavigate();
   const url = `https://jbrepair.info${location.pathname}`;
 
   return (
@@ -81,12 +83,12 @@ export default function DeviceRepair({ lang }) {
             {isEnglish ? "Fix my device now" : "Arreglar mi equipo ahora"}
           </a>
 
-          <a
-            href="/#contact"
+          <button
+            onClick={() => goToContact(navigate)}
             className="border-2 border-primary text-primary px-5 py-2.5 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
           >
             {isEnglish ? "Tell us what’s happening" : "Cuéntanos qué pasa"}
-          </a>
+          </button>
         </div>
 
         {/* Internal links (SEO boost) */}

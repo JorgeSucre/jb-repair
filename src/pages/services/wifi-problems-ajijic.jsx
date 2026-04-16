@@ -1,9 +1,12 @@
 import React from "react";
 import SEO from "../../components/SEO.jsx";
 import { wa } from "../../utils/whatsapp.js";
+import { useNavigate } from "react-router-dom";
+import { goToContact } from "../../utils/navigation.js";
 
 export default function WifiService({ lang = "en" }) {
   const isEnglish = lang === "en";
+  const navigate = useNavigate();
 
   const title = isEnglish
     ? "WiFi Problems in Ajijic | Repair, Installation & Troubleshooting"
@@ -100,13 +103,12 @@ export default function WifiService({ lang = "en" }) {
           >
             {isEnglish ? "Fix my WiFi now" : "Arreglar mi WiFi ahora"}
           </a>
-
-          <a
-            href="/#contact"
+          <button
+            onClick={() => goToContact(navigate)}
             className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
           >
             {isEnglish ? "Tell us what’s happening" : "Cuéntanos qué pasa"}
-          </a>
+          </button>
         </div>
 
         <div className="mb-8">

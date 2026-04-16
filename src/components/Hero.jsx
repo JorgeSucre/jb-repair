@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { wa } from "../utils/whatsapp.js";
+import { useNavigate } from "react-router-dom";
+import { goToContact } from "../utils/navigation.js";
 
 export default function Hero({ lang }) {
+  const navigate = useNavigate();
   const t = {
     es: {
       title1: "¿Problemas con tu computadora o WiFi",
@@ -79,13 +82,17 @@ export default function Hero({ lang }) {
               >
                 {t.primary}
               </a>
-              <a
-                href="#contact"
-                aria-label="Ir al formulario de contacto"
+              <button
+                onClick={() => goToContact(navigate)}
+                aria-label={
+                  lang === "es"
+                    ? "Ir al formulario de contacto"
+                    : "Go to contact form"
+                }
                 className="border-2 border-primary text-primary font-semibold px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition"
               >
                 {t.secondary}
-              </a>
+              </button>
             </>
           ) : (
             <>
@@ -98,13 +105,17 @@ export default function Hero({ lang }) {
               >
                 {t.primary}
               </a>
-              <a
-                href="#contact"
-                aria-label="Go to contact form"
+              <button
+                onClick={() => goToContact(navigate)}
+                aria-label={
+                  lang === "es"
+                    ? "Ir al formulario de contacto"
+                    : "Go to contact form"
+                }
                 className="border-2 border-primary text-primary font-semibold px-6 py-3 rounded-lg hover:bg-primary hover:text-white transition"
               >
                 {t.secondary}
-              </a>
+              </button>
             </>
           )}
         </div>

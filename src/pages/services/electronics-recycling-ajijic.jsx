@@ -1,9 +1,11 @@
 import React from "react";
 import SEO from "../../components/SEO.jsx";
 import { wa } from "../../utils/whatsapp.js";
+import { useNavigate } from "react-router-dom";
 
 export default function ElectronicsRecycling({ lang }) {
   const isEnglish = lang === "en";
+  const navigate = useNavigate();
   const message = isEnglish
     ? "Hi, I have some old electronics I’d like to recycle in Ajijic."
     : "Hola, tengo electrónicos que quiero reciclar en Ajijic.";
@@ -58,13 +60,18 @@ export default function ElectronicsRecycling({ lang }) {
         >
           {isEnglish ? "Contact on WhatsApp" : "Contactar por WhatsApp"}
         </a>
-
-        <a
-          href="#contact"
+        <button
+          onClick={() => {
+            navigate("/");
+            setTimeout(() => {
+              const el = document.getElementById("contact");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }, 100);
+          }}
           className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
         >
           {isEnglish ? "Tell us what you have" : "Cuéntanos qué tienes"}
-        </a>
+        </button>
       </div>
 
       {/* WHAT WE ACCEPT */}

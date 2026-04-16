@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { goToContact } from "../utils/navigation.js";
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 import { wa } from "../utils/whatsapp.js";
@@ -80,6 +81,7 @@ export default function FAQ({ lang }) {
 
   const [openIndex, setOpenIndex] = useState(null);
   const contentRefs = useRef([]);
+  const navigate = useNavigate();
 
   const message =
     lang === "en"
@@ -173,17 +175,23 @@ export default function FAQ({ lang }) {
             {lang === "en" ? (
               <>
                 Prefer a form? Go to the{" "}
-                <a href="#contact" className="text-primary underline">
+                <button
+                  onClick={() => goToContact(navigate)}
+                  className="text-primary underline"
+                >
                   contact form
-                </a>
+                </button>
                 .
               </>
             ) : (
               <>
                 ¿Prefieres un formulario? Ve al{" "}
-                <a href="#contact" className="text-primary underline">
+                <button
+                  onClick={() => goToContact(navigate)}
+                  className="text-primary underline"
+                >
                   formulario de contacto
-                </a>
+                </button>
                 .
               </>
             )}

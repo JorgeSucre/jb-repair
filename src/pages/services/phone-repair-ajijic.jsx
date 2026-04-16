@@ -1,11 +1,13 @@
 import SEO from "../../components/SEO.jsx";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { goToContact } from "../../utils/navigation.js";
 import { wa } from "../../utils/whatsapp.js";
 
 export default function PhoneRepair({ lang }) {
   // Use global language from App.jsx (single source of truth)
   const isEnglish = lang === "en";
   const location = useLocation();
+  const navigate = useNavigate();
   const url = `https://jbrepair.info${location.pathname}`;
 
   return (
@@ -81,14 +83,13 @@ export default function PhoneRepair({ lang }) {
           >
             {isEnglish ? "Fix my phone now" : "Arreglar mi celular ahora"}
           </a>
-
           {/* Contact form CTA */}
-          <a
-            href="/#contact"
+          <button
+            onClick={() => goToContact(navigate)}
             className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary hover:text-white transition"
           >
             {isEnglish ? "Tell us what’s happening" : "Cuéntanos qué pasa"}
-          </a>
+          </button>
         </div>
 
         <div className="mt-10 space-y-3">

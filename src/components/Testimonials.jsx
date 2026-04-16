@@ -94,7 +94,7 @@ export default function Testimonials({ lang }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (isPaused.current) return;
+      if (isPaused.current || document.hidden) return;
 
       setVisible(false);
       setTimeout(() => {
@@ -150,6 +150,9 @@ export default function Testimonials({ lang }) {
       <h2 className="text-2xl md:text-3xl font-bold text-center text-primary mb-4">
         {isEnglish ? "Google Reviews" : "Reseñas de Google"}
       </h2>
+      <p className="text-xs text-primary text-center font-semibold mb-1">
+        {isEnglish ? "Top rated in Ajijic" : "Mejor calificado en Ajijic"}
+      </p>
 
       <div className="max-w-4xl mx-auto">
         <div
@@ -170,59 +173,70 @@ export default function Testimonials({ lang }) {
               }, 200);
             }
           }}
-          className={`grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
+          className={`grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
         >
-          {visibleReviews.map((review, index) => (
-            <div
-              key={review.name}
-              className={`bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-2 md:p-3 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary dark:hover:bg-gray-800 hover:scale-[1.015] transition-all duration-300 flex flex-col justify-between ${
-                index === 0
-                  ? "col-span-2 md:col-span-2 p-4 md:p-5 border-primary shadow-md bg-gradient-to-br from-primary/5 to-transparent transition-transform duration-500"
-                  : ""
-              }`}
-            >
-              {index === 0 && (
-                <span className="text-[10px] uppercase tracking-wide text-primary font-semibold mb-1 inline-block">
-                  {isEnglish ? "Top review" : "Mejor reseña"}
-                </span>
-              )}
-              <div className="flex items-center gap-2 mb-1.5">
-                <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold">
-                  {review.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")
-                    .slice(0, 2)}
+          {visibleReviews.map((review, index) => {
+            const isWifi = review.title.toLowerCase().includes("wifi");
+            const isComputer =
+              review.title.toLowerCase().includes("computer") ||
+              review.title.toLowerCase().includes("laptop");
+
+            return (
+              <div
+                key={review.name}
+                className={`bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-2 md:p-3 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-primary dark:hover:bg-gray-800 hover:scale-[1.015] transition-all duration-300 flex flex-col justify-between ${
+                  index === 0
+                    ? "col-span-2 md:col-span-2 p-4 md:p-5 border-primary shadow-md bg-gradient-to-br from-primary/5 to-transparent transition-transform duration-500"
+                    : isWifi
+                      ? "border-blue-400/40"
+                      : isComputer
+                        ? "border-green-400/40"
+                        : ""
+                }`}
+              >
+                {index === 0 && (
+                  <span className="text-[10px] uppercase tracking-wide text-primary font-semibold mb-1 inline-block">
+                    {isEnglish ? "Top review" : "Mejor reseña"}
+                  </span>
+                )}
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold">
+                    {review.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .slice(0, 2)}
+                  </div>
+                  <div className="text-yellow-400 text-sm hover:animate-[pulse_1.5s_ease-in-out]">
+                    ★★★★★
+                  </div>
                 </div>
-                <div className="text-yellow-400 text-sm animate-[pulse_2s_ease-in-out_infinite]">
-                  ★★★★★
-                </div>
+                <p
+                  className={`text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100 mb-1 ${index === 0 ? "text-sm md:text-base font-bold" : ""}`}
+                >
+                  {review.title}
+                </p>
+                <p
+                  className={`text-xs text-gray-600 dark:text-gray-300 mb-2 ${index === 0 ? "text-sm md:text-base line-clamp-none" : "line-clamp-3"}`}
+                >
+                  <span className="text-primary mr-1">“</span>
+                  {review.text}
+                  <span className="text-primary ml-1">”</span>
+                </p>
+                {index === 0 && (
+                  <div className="h-px w-full bg-primary/20 my-2" />
+                )}
+                <p
+                  className={`text-[11px] md:text-xs font-medium text-gray-800 dark:text-gray-200 ${index === 0 ? "text-sm" : ""}`}
+                >
+                  {review.name}
+                </p>
               </div>
-              <p
-                className={`text-xs md:text-sm font-semibold text-gray-800 dark:text-gray-100 mb-1 ${index === 0 ? "text-sm md:text-base font-bold" : ""}`}
-              >
-                {review.title}
-              </p>
-              <p
-                className={`text-xs text-gray-600 dark:text-gray-300 mb-2 ${index === 0 ? "text-sm md:text-base line-clamp-none" : "line-clamp-3"}`}
-              >
-                <span className="text-primary mr-1">“</span>
-                {review.text}
-                <span className="text-primary ml-1">”</span>
-              </p>
-              {index === 0 && (
-                <div className="h-px w-full bg-primary/20 my-2" />
-              )}
-              <p
-                className={`text-[11px] md:text-xs font-medium text-gray-800 dark:text-gray-200 ${index === 0 ? "text-sm" : ""}`}
-              >
-                {review.name}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
         {/* Google review actions */}
-        <div className="text-center mt-5 flex flex-col sm:flex-row gap-2 justify-center">
+        <div className="text-center mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center">
           <a
             href="https://g.page/r/CSkOaH6h6oOgEAI/review"
             target="_blank"
@@ -242,9 +256,12 @@ export default function Testimonials({ lang }) {
               ? "See all reviews on Google"
               : "Ver todas las reseñas en Google"}
           </a>
+          <span className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
+            ⭐ 5.0 • 15+ {isEnglish ? "reviews" : "reseñas"}
+          </span>
         </div>
         {/* Soft CTA to WhatsApp */}
-        <div className="text-center mt-6">
+        <div className="text-center mt-7">
           <a
             href={wa(message)}
             target="_blank"
@@ -252,9 +269,14 @@ export default function Testimonials({ lang }) {
             className="inline-block bg-primary text-white px-5 py-2.5 rounded-lg font-semibold shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 hover:brightness-110 transition-all duration-150"
           >
             {isEnglish
-              ? "Get help now on WhatsApp"
-              : "Recibe ayuda por WhatsApp"}
+              ? "Get help in minutes on WhatsApp"
+              : "Recibe ayuda en minutos por WhatsApp"}
           </a>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 text-center">
+            {isEnglish
+              ? "Quick response • Trusted local service"
+              : "Respuesta rápida • Servicio local confiable"}
+          </p>
         </div>
       </div>
 

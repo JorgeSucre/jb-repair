@@ -1,9 +1,11 @@
 import SEO from "../../components/SEO.jsx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { goToContact } from "../../utils/navigation.js";
 import { wa } from "../../utils/whatsapp.js";
 export default function TechSupport({ lang }) {
   // Use global language from App.jsx (single source of truth)
   const isEnglish = lang === "en";
+  const navigate = useNavigate();
 
   return (
     <>
@@ -119,12 +121,12 @@ export default function TechSupport({ lang }) {
           >
             {isEnglish ? "Fix my issue now" : "Arreglar mi problema ahora"}
           </a>
-          <a
-            href="/#contact"
+          <button
+            onClick={() => goToContact(navigate)}
             className="w-full sm:w-auto border-2 border-primary text-primary px-5 py-2.5 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
           >
             {isEnglish ? "Tell us what’s happening" : "Cuéntanos qué pasa"}
-          </a>
+          </button>
         </div>
 
         <p className="text-xs text-gray-500 dark:text-gray-400 mb-6">
