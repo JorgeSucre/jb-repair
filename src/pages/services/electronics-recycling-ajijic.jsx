@@ -12,6 +12,14 @@ export default function ElectronicsRecycling({ lang }) {
 
   return (
     <section className="py-10 md:py-16 px-4 max-w-5xl mx-auto space-y-5">
+      <div className="mb-4">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-sm text-primary underline hover:opacity-80 transition"
+        >
+          {isEnglish ? "← Back" : "← Regresar"}
+        </button>
+      </div>
       <SEO
         title={
           isEnglish
