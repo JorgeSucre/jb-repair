@@ -1,11 +1,15 @@
 import SEO from "../../components/SEO.jsx";
-import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { goToContact } from "../../utils/navigation.js";
 import { wa } from "../../utils/whatsapp.js";
+
 export default function TechSupport({ lang }) {
   // Use global language from App.jsx (single source of truth)
   const isEnglish = lang === "en";
+  const location = useLocation();
   const navigate = useNavigate();
+  const url = `https://jbrepair.info${location.pathname}`;
 
   return (
     <>
@@ -21,7 +25,7 @@ export default function TechSupport({ lang }) {
             ? "Need tech support in Ajijic? We help with computers, emails, passwords, WiFi, and everyday tech issues. Friendly, on-site service available."
             : "¿Necesitas soporte técnico en Ajijic? Ayudamos con computadoras, correos, contraseñas, WiFi y problemas tecnológicos diarios."
         }
-        url={"https://jbrepair.info/tech-support-ajijic"}
+        url={url}
         locale={isEnglish ? "en_US" : "es_MX"}
       />
 
@@ -29,9 +33,10 @@ export default function TechSupport({ lang }) {
       <section className="py-10 md:py-16 px-4 max-w-4xl mx-auto space-y-5">
         {/* Back button */}
         <button
+          type="button"
           onClick={() => window.history.back()}
           className="text-sm text-primary hover:underline mb-4"
-          aria-label="Go back"
+          aria-label={isEnglish ? "Go back" : "Regresar"}
         >
           {isEnglish ? "← Back" : "← Regresar"}
         </button>
@@ -61,38 +66,24 @@ export default function TechSupport({ lang }) {
           {isEnglish ? (
             <>
               If your issue is related to internet or connectivity, you may need
-              a full{" "}
-              <Link
-                to="/wifi-installation-ajijic"
-                className="text-primary underline"
-              >
-                WiFi installation or mesh setup
-              </Link>
-              , or help with{" "}
+              help with{" "}
               <Link
                 to="/wifi-problems-ajijic"
                 className="text-primary underline"
               >
-                fixing WiFi problems
+                WiFi installation, mesh setup, or WiFi troubleshooting
               </Link>
               .
             </>
           ) : (
             <>
               Si tu problema está relacionado con internet o conectividad, puede
-              que necesites una{" "}
-              <Link
-                to="/wifi-installation-ajijic"
-                className="text-primary underline"
-              >
-                instalación de WiFi o sistema mesh
-              </Link>
-              , o ayuda para{" "}
+              que necesites ayuda con{" "}
               <Link
                 to="/wifi-problems-ajijic"
                 className="text-primary underline"
               >
-                solucionar problemas de WiFi
+                instalación de WiFi, sistema mesh o solución de problemas de WiFi
               </Link>
               .
             </>
@@ -122,6 +113,7 @@ export default function TechSupport({ lang }) {
             {isEnglish ? "Fix my issue now" : "Arreglar mi problema ahora"}
           </a>
           <button
+            type="button"
             onClick={() => goToContact(navigate)}
             className="w-full sm:w-auto border-2 border-primary text-primary px-5 py-2.5 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
           >
@@ -213,3 +205,7 @@ export default function TechSupport({ lang }) {
     </>
   );
 }
+
+TechSupport.propTypes = {
+  lang: PropTypes.string.isRequired,
+};

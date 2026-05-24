@@ -83,6 +83,7 @@ export default function Hero({ lang }) {
                 {t.primary}
               </a>
               <button
+                type="button"
                 onClick={() => goToContact(navigate)}
                 aria-label={
                   lang === "es"
@@ -106,6 +107,7 @@ export default function Hero({ lang }) {
                 {t.primary}
               </a>
               <button
+                type="button"
                 onClick={() => goToContact(navigate)}
                 aria-label={
                   lang === "es"

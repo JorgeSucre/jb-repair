@@ -115,7 +115,7 @@ export default function Testimonials({ lang }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "jb.repair",
-    image: "https://jbrepair.info",
+    image: "https://jbrepair.info/assets/logo.svg",
     url: "https://jbrepair.info",
     telephone: "+52 311 175 1369",
     address: {
@@ -126,7 +126,7 @@ export default function Testimonials({ lang }) {
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "5",
-      reviewCount: reviews.length.toString(),
+      reviewCount: "15",
     },
     review: reviews.slice(0, 5).map((r) => ({
       "@type": "Review",
@@ -207,7 +207,10 @@ export default function Testimonials({ lang }) {
                       .join("")
                       .slice(0, 2)}
                   </div>
-                  <div className="text-yellow-400 text-sm hover:animate-[pulse_1.5s_ease-in-out]">
+                  <div
+                    className="text-yellow-400 text-sm hover:animate-[pulse_1.5s_ease-in-out]"
+                    aria-label="5 star rating"
+                  >
                     ★★★★★
                   </div>
                 </div>

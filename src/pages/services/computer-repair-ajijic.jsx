@@ -1,9 +1,10 @@
 import SEO from "../../components/SEO.jsx";
+import PropTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
 import { wa } from "../../utils/whatsapp.js";
 import { goToContact } from "../../utils/navigation.js";
 
-export default function computerRepair({ lang }) {
+export default function ComputerRepair({ lang }) {
   // This page uses the global `lang` prop passed from App.jsx.
   // Do NOT detect language here to avoid inconsistencies across pages.
   const isEnglish = lang === "en";
@@ -32,9 +33,10 @@ export default function computerRepair({ lang }) {
       <section className="py-12 md:py-16 px-4 max-w-4xl mx-auto space-y-6">
         {/* HERO */}
         <button
+          type="button"
           onClick={() => window.history.back()}
           className="mb-6 text-sm text-primary hover:underline"
-          aria-label="Go back"
+          aria-label={isEnglish ? "Go back" : "Regresar"}
         >
           {isEnglish ? "← Back" : "← Regresar"}
         </button>
@@ -83,6 +85,7 @@ export default function computerRepair({ lang }) {
 
           {/* Form CTA (more formal contact) */}
           <button
+            type="button"
             onClick={() => goToContact(navigate)}
             className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary hover:text-white transition"
           >
@@ -130,3 +133,7 @@ export default function computerRepair({ lang }) {
     </>
   );
 }
+
+ComputerRepair.propTypes = {
+  lang: PropTypes.string.isRequired,
+};

@@ -55,15 +55,24 @@ export default function App() {
   }, [lang, theme]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-white to-primary/5 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 text-gray-900 dark:text-white transition-colors duration-300">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
+      >
+        Skip to content
+      </a>
+
       {/* Controls */}
       <Header lang={lang} setLang={setLang} theme={theme} setTheme={setTheme} />
 
-      <main>
+      <main id="main-content">
         <Routes>
           {/* Home */}
           <Route path="/" element={<Home lang={lang} />} />

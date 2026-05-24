@@ -111,12 +111,15 @@ export default function FAQ({ lang }) {
               className="border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 hover:border-primary transition-all duration-300"
             >
               <button
+                type="button"
                 onClick={() => toggle(i)}
                 aria-expanded={openIndex === i}
+                aria-controls={`faq-panel-${i}`}
                 className="w-full text-left px-4 py-3 font-semibold flex justify-between items-center text-gray-800 dark:text-gray-100 transition"
               >
                 {item.q}
                 <span
+                  aria-hidden="true"
                   className={`text-lg transition-transform duration-200 ${openIndex === i ? "rotate-180" : "rotate-0"}`}
                 >
                   {openIndex === i ? "−" : "+"}
@@ -124,6 +127,7 @@ export default function FAQ({ lang }) {
               </button>
 
               <div
+                id={`faq-panel-${i}`}
                 ref={(el) => (contentRefs.current[i] = el)}
                 style={{
                   height:
@@ -176,6 +180,7 @@ export default function FAQ({ lang }) {
               <>
                 Prefer a form? Go to the{" "}
                 <button
+                  type="button"
                   onClick={() => goToContact(navigate)}
                   className="text-primary underline"
                 >
@@ -187,6 +192,7 @@ export default function FAQ({ lang }) {
               <>
                 ¿Prefieres un formulario? Ve al{" "}
                 <button
+                  type="button"
                   onClick={() => goToContact(navigate)}
                   className="text-primary underline"
                 >

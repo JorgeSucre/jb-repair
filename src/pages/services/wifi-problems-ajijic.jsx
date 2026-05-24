@@ -1,12 +1,14 @@
-import React from "react";
 import SEO from "../../components/SEO.jsx";
+import PropTypes from "prop-types";
 import { wa } from "../../utils/whatsapp.js";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { goToContact } from "../../utils/navigation.js";
 
 export default function WifiService({ lang = "en" }) {
   const isEnglish = lang === "en";
+  const location = useLocation();
   const navigate = useNavigate();
+  const url = `https://jbrepair.info${location.pathname}`;
 
   const title = isEnglish
     ? "WiFi Problems in Ajijic | Repair, Installation & Troubleshooting"
@@ -25,20 +27,21 @@ export default function WifiService({ lang = "en" }) {
       <SEO
         title={title}
         description={description}
-        url="https://jbrepair.info/wifi-problems-ajijic"
+        url={url}
         locale={isEnglish ? "en_US" : "es_MX"}
       />
 
       <section className="py-14 px-4 max-w-4xl mx-auto">
         {/* Back */}
         <div className="mb-4">
-          <a
-            href="/"
+          <button
+            type="button"
+            onClick={() => window.history.back()}
             className="text-primary text-sm"
             aria-label={isEnglish ? "Go back" : "Regresar"}
           >
             {isEnglish ? "← Back" : "← Regresar"}
-          </a>
+          </button>
         </div>
 
         {/* Title */}
@@ -104,6 +107,7 @@ export default function WifiService({ lang = "en" }) {
             {isEnglish ? "Fix my WiFi now" : "Arreglar mi WiFi ahora"}
           </a>
           <button
+            type="button"
             onClick={() => goToContact(navigate)}
             className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
           >
@@ -183,3 +187,7 @@ export default function WifiService({ lang = "en" }) {
     </>
   );
 }
+
+WifiService.propTypes = {
+  lang: PropTypes.string,
+};

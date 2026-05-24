@@ -1,19 +1,24 @@
-import React from "react";
 import PropTypes from "prop-types";
 
-export default function SEO({ title, description, url, locale = "en_US" }) {
+const siteUrl = "https://jbrepair.info";
+
+export default function SEO({
+  title,
+  description,
+  url = siteUrl,
+  locale = "en_US",
+  keywords = "computer repair ajijic, wifi repair ajijic, tech support ajijic",
+}) {
   const siteName = "jb.repair";
-  const defaultImage = "/assets/logo.svg";
+  const defaultImage = `${siteUrl}/assets/logo.svg`;
 
   return (
     <>
       {/* Basic SEO */}
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta
-        name="keywords"
-        content="computer repair ajijic, wifi repair ajijic, tech support ajijic"
-      />
+      <meta name="keywords" content={keywords} />
+      <meta name="robots" content="index, follow" />
 
       {/* Canonical */}
       <link rel="canonical" href={url} />
@@ -39,6 +44,7 @@ export default function SEO({ title, description, url, locale = "en_US" }) {
 SEO.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   locale: PropTypes.string,
+  keywords: PropTypes.string,
 };

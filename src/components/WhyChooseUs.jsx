@@ -101,7 +101,9 @@ export default function WhyChooseUs({ lang }) {
                   : "bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 hover:shadow-sm"
               }`}
             >
-              <div className="text-xl md:text-2xl shrink-0">{item.icon}</div>
+              <div className="text-xl md:text-2xl shrink-0" aria-hidden="true">
+                {item.icon}
+              </div>
               <div className="text-center md:text-left">
                 <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
                   {item.title}

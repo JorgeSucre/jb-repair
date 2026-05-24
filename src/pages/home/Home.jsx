@@ -1,12 +1,17 @@
 import React, { lazy, Suspense } from "react";
+import PropTypes from "prop-types";
+import SEO from "../../components/SEO.jsx";
 import Hero from "../../components/Hero.jsx";
 import Services from "../../components/Services.jsx";
 import WhyChooseUs from "../../components/WhyChooseUs.jsx";
-const Testimonials = lazy(() => import("../../components/Testimonials.jsx"));
-const Faq = lazy(() => import("../../components/FAQ.jsx"));
 import Form from "../../components/Form.jsx";
 
+const Testimonials = lazy(() => import("../../components/Testimonials.jsx"));
+const Faq = lazy(() => import("../../components/FAQ.jsx"));
+
 export default function Home({ lang = "en" }) {
+  const isEnglish = lang === "en";
+
   const t = {
     es: {
       form: {
@@ -27,7 +32,27 @@ export default function Home({ lang = "en" }) {
   }[lang];
 
   return (
-    <main id="main-content">
+    <>
+      <SEO
+        title={
+          isEnglish
+            ? "jb.repair | Tech Support & Computer Repair in Ajijic"
+            : "jb.repair | Soporte técnico y reparación en Ajijic"
+        }
+        description={
+          isEnglish
+            ? "Fast, on-site tech support in Ajijic. Computer repair, WiFi troubleshooting, phone repair, security cameras and device support."
+            : "Soporte técnico a domicilio en Ajijic. Reparación de computadoras, WiFi, celulares, cámaras de seguridad y ayuda con dispositivos."
+        }
+        url="https://jbrepair.info/"
+        locale={isEnglish ? "en_US" : "es_MX"}
+        keywords={
+          isEnglish
+            ? "tech support ajijic, computer repair ajijic, wifi repair ajijic, phone repair ajijic, security cameras ajijic"
+            : "soporte técnico ajijic, reparación de computadoras ajijic, reparación wifi ajijic, reparación celulares ajijic, cámaras de seguridad ajijic"
+        }
+      />
+
       {/* Hero */}
       <Hero lang={lang} />
 
@@ -50,7 +75,7 @@ export default function Home({ lang = "en" }) {
       {/* Contact */}
       <div
         id="contact"
-        className="p-6 space-y-6 md:space-y-8 max-w-3xl mx-auto"
+        className="scroll-mt-24 p-6 space-y-6 md:space-y-8 max-w-3xl mx-auto"
       >
         <Form lang={lang} t={t} />
 
@@ -67,6 +92,10 @@ export default function Home({ lang = "en" }) {
           </p>
         </section>
       </div>
-    </main>
+    </>
   );
 }
+
+Home.propTypes = {
+  lang: PropTypes.string,
+};

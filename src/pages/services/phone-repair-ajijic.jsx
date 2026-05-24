@@ -1,4 +1,5 @@
 import SEO from "../../components/SEO.jsx";
+import PropTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
 import { goToContact } from "../../utils/navigation.js";
 import { wa } from "../../utils/whatsapp.js";
@@ -31,6 +32,7 @@ export default function PhoneRepair({ lang }) {
       <section className="py-12 md:py-16 px-4 max-w-4xl mx-auto space-y-6">
         {/* Back button */}
         <button
+          type="button"
           onClick={() => window.history.back()}
           className="text-sm text-primary hover:underline"
           aria-label={isEnglish ? "Go back" : "Regresar"}
@@ -85,6 +87,7 @@ export default function PhoneRepair({ lang }) {
           </a>
           {/* Contact form CTA */}
           <button
+            type="button"
             onClick={() => goToContact(navigate)}
             className="border-2 border-primary text-primary px-6 py-3 rounded-lg font-semibold text-center hover:bg-primary hover:text-white transition"
           >
@@ -123,3 +126,7 @@ export default function PhoneRepair({ lang }) {
     </>
   );
 }
+
+PhoneRepair.propTypes = {
+  lang: PropTypes.string.isRequired,
+};

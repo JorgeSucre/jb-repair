@@ -1,4 +1,5 @@
 import SEO from "../../components/SEO.jsx";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { wa } from "../../utils/whatsapp.js";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -32,8 +33,10 @@ export default function DeviceRepair({ lang }) {
       <section className="py-10 md:py-16 px-4 max-w-5xl mx-auto space-y-5">
         {/* Back */}
         <button
+          type="button"
           onClick={() => window.history.back()}
           className="text-sm text-primary hover:underline"
+          aria-label={isEnglish ? "Go back" : "Regresar"}
         >
           {isEnglish ? "← Back" : "← Regresar"}
         </button>
@@ -84,6 +87,7 @@ export default function DeviceRepair({ lang }) {
           </a>
 
           <button
+            type="button"
             onClick={() => goToContact(navigate)}
             className="border-2 border-primary text-primary px-5 py-2.5 rounded-lg font-semibold text-center hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-150"
           >
@@ -122,10 +126,10 @@ export default function DeviceRepair({ lang }) {
                 : "💻 Reparación de laptops"}
             </h2>
 
-            <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
-              <li>• {isEnglish ? "Slow computer" : "Computadora lenta"}</li>
-              <li>• {isEnglish ? "SSD upgrade" : "Actualización a SSD"}</li>
-              <li>• {isEnglish ? "System errors" : "Errores de sistema"}</li>
+            <ul className="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+              <li>{isEnglish ? "Slow computer" : "Computadora lenta"}</li>
+              <li>{isEnglish ? "SSD upgrade" : "Actualización a SSD"}</li>
+              <li>{isEnglish ? "System errors" : "Errores de sistema"}</li>
             </ul>
 
             <Link
@@ -144,10 +148,10 @@ export default function DeviceRepair({ lang }) {
                 : "📱 Reparación de celulares"}
             </h2>
 
-            <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-1">
-              <li>• {isEnglish ? "Broken screen" : "Pantalla rota"}</li>
-              <li>• {isEnglish ? "Battery issues" : "Problemas de batería"}</li>
-              <li>• {isEnglish ? "Charging issues" : "Problemas de carga"}</li>
+            <ul className="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+              <li>{isEnglish ? "Broken screen" : "Pantalla rota"}</li>
+              <li>{isEnglish ? "Battery issues" : "Problemas de batería"}</li>
+              <li>{isEnglish ? "Charging issues" : "Problemas de carga"}</li>
             </ul>
 
             <Link
@@ -162,3 +166,7 @@ export default function DeviceRepair({ lang }) {
     </>
   );
 }
+
+DeviceRepair.propTypes = {
+  lang: PropTypes.string.isRequired,
+};
