@@ -1,10 +1,28 @@
 import nodemailer from "nodemailer";
+import { z } from "zod";
 
 export const config = {
   api: {
-    bodyParser: true,
+    bodyParser: {
+      sizeLimit: "10kb",
+    },
   },
 };
+
+const contactSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(3)
+    .max(100)
+    .regex(/^[a-zA-ZÀ-ÿ\s'-]+$/),
+
+  email: z.string().trim().email().max(255),
+
+  message: z.string().trim().min(10).max(5000),
+
+  company: z.string().optional(),
+});
 
 export default async function handler(req, res) {
   // Handle CORS preflight (safe even if not needed)
@@ -16,20 +34,29 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { name, email, message } = req.body || {};
+  const body = req.body || {};
 
-  // Basic validation
-  if (!name || !email || !message) {
-    return res.status(400).json({ error: "All fields are required" });
+  const parsed = contactSchema.safeParse(body);
+
+  if (!parsed.success) {
+    return res.status(400).json({ error: "Invalid form submission" });
   }
 
-  // Very basic email format check
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({ error: "Invalid email" });
+  const { name, email, message, company } = parsed.data;
+
+  // Honeypot spam protection
+  if (company) {
+    return res.status(200).json({ ok: true });
   }
 
   try {
+    if (!process.env.MAIL_USER || !process.env.MAIL_PASS) {
+      console.error("Missing MAIL_USER or MAIL_PASS environment variables");
+
+      return res.status(500).json({
+        error: "Mail service configuration error",
+      });
+    }
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
@@ -51,7 +78,10 @@ export default async function handler(req, res) {
         <p><strong>Correo:</strong> ${email}</p>
         <hr />
         <p><strong>Mensaje:</strong></p>
-        <p>${message.replace(/\n/g, "<br/>")}</p>
+        <p>${message
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/\n/g, "<br/>")}</p>
       </div>
     `;
 

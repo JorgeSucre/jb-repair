@@ -1,12 +1,25 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { wa } from "../utils/whatsapp.js";
+import { z } from "zod";
 
 const initialErrors = {
   name: true,
   email: true,
   message: true,
 };
+
+const contactSchema = z.object({
+  name: z
+    .string()
+    .min(3)
+    .max(100)
+    .regex(/^[a-zA-ZÀ-ÿ\s'-]+$/),
+
+  email: z.string().email().max(255),
+
+  message: z.string().min(10).max(5000),
+});
 
 export default function Form({ lang, t }) {
   const [loading, setLoading] = useState(false);
@@ -50,29 +63,6 @@ export default function Form({ lang, t }) {
     return null;
   };
 
-  const validate = (data) => {
-    const newErrors = {};
-
-    if (!data.name || data.name.trim().length < 3) {
-      newErrors.name =
-        lang === "en" ? "Enter a valid name" : "Ingresa un nombre válido";
-    }
-
-    if (!data.email || !/\S+@\S+\.\S+/.test(data.email)) {
-      newErrors.email =
-        lang === "en" ? "Enter a valid email" : "Ingresa un correo válido";
-    }
-
-    if (!data.message || data.message.length < 10) {
-      newErrors.message =
-        lang === "en"
-          ? "Please describe your issue"
-          : "Describe mejor tu problema";
-    }
-
-    return newErrors;
-  };
-
   const message =
     lang === "en"
       ? "Hi, I’m contacting you from your website. I need help with a tech issue in Ajijic"
@@ -101,13 +91,46 @@ export default function Form({ lang, t }) {
 
             const formData = new FormData(formEl);
             const data = Object.fromEntries(formData.entries());
-            data.name = data.name.trim();
-            data.email = data.email.trim();
-            data.message = data.message.trim();
+            data.name = data.name?.trim() || "";
+            data.email = data.email?.trim() || "";
+            data.message = data.message?.trim() || "";
 
-            const validationErrors = validate(data);
-            if (Object.keys(validationErrors).length > 0) {
-              setErrors(validationErrors);
+            if (data.company) {
+              setLoading(false);
+              return;
+            }
+
+            const zodValidation = contactSchema.safeParse(data);
+
+            if (!zodValidation.success) {
+              const fieldErrors = {};
+
+              zodValidation.error.errors.forEach((err) => {
+                const field = err.path[0];
+
+                if (field === "name") {
+                  fieldErrors.name =
+                    lang === "en"
+                      ? "Enter a valid name"
+                      : "Ingresa un nombre válido";
+                }
+
+                if (field === "email") {
+                  fieldErrors.email =
+                    lang === "en"
+                      ? "Enter a valid email"
+                      : "Ingresa un correo válido";
+                }
+
+                if (field === "message") {
+                  fieldErrors.message =
+                    lang === "en"
+                      ? "Please describe your issue"
+                      : "Describe mejor tu problema";
+                }
+              });
+
+              setErrors(fieldErrors);
               setTouched({ name: true, email: true, message: true });
               setLoading(false);
               return;
@@ -143,6 +166,14 @@ export default function Form({ lang, t }) {
           }}
           className="space-y-2.5"
         >
+          <input
+            type="text"
+            name="company"
+            tabIndex="-1"
+            autoComplete="off"
+            className="hidden"
+            aria-hidden="true"
+          />
           {/* Name */}
           <div>
             <label
@@ -159,6 +190,7 @@ export default function Form({ lang, t }) {
               placeholder={lang === "en" ? "Name" : "Nombre"}
               required
               minLength={3}
+              maxLength={100}
               aria-invalid={Boolean(touched.name && errors.name)}
               aria-describedby={
                 touched.name && errors.name ? "contact-name-error" : undefined
@@ -214,6 +246,7 @@ export default function Form({ lang, t }) {
               autoComplete="email"
               placeholder={lang === "en" ? "Email" : "Correo"}
               required
+              maxLength={255}
               aria-invalid={Boolean(touched.email && errors.email)}
               aria-describedby={
                 touched.email && errors.email
@@ -276,6 +309,7 @@ export default function Form({ lang, t }) {
               required
               rows={4}
               minLength={10}
+              maxLength={5000}
               aria-invalid={Boolean(touched.message && errors.message)}
               aria-describedby={
                 touched.message && errors.message
